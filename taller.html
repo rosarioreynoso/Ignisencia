@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El poder del lenguaje — Ignisencia</title>
+  <link rel="icon" type="image/png" href="Logo/Foto%20de%20Perfil.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/bacalisties');
+
+    :root {
+      --crema-1:        #fff7e6;
+      --crema-2:        #ebd7cd;
+      --terracota:      #be6e4b;
+      --terracota-dark: #9b6149;
+      --marron:         #6a3118;
+      --negro:          #1a0f08;
+      --gris:           #5a4035;
+      --crema:          var(--crema-1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--negro);
+      color: var(--crema);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(26,15,8,0.97), transparent);
+    }
+
+    .nav-logo {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo-img {
+      height: 42px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-back {
+      color: var(--crema);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: opacity 0.2s;
+    }
+
+    .nav-back:hover { opacity: 1; }
+
+    /* ─── HERO TALLER ─── */
+    .taller-hero {
+      min-height: 50vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 8rem 4rem 5rem;
+      background:
+        linear-gradient(to bottom, rgba(26,15,8,0.7) 0%, rgba(26,15,8,0.5) 50%, rgba(26,15,8,0.9) 100%),
+        url('Pagina%20web/hero%20image%20web.png') center/cover no-repeat;
+      position: relative;
+    }
+
+    .taller-hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .taller-hero .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--terracota);
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .taller-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--crema);
+      margin-bottom: 1.5rem;
+    }
+
+    .taller-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--terracota);
+      color: var(--crema-1);
+      padding: 0.45rem 1.1rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ─── MAIN CONTENT ─── */
+    .taller-main {
+      background: var(--crema-1);
+      color: var(--negro);
+      padding: 6rem 4rem;
+    }
+
+    .taller-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    /* Info */
+    .taller-info { display: flex; flex-direction: column; gap: 2rem; }
+
+    .taller-desc {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--gris);
+      font-weight: 300;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--terracota);
+      margin: 0.5rem 0 1rem;
+    }
+
+    .taller-detalles {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .taller-detalle {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.95rem;
+      color: var(--negro);
+    }
+
+    .taller-detalle-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(190,110,75,0.1);
+      border: 1px solid rgba(190,110,75,0.25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+
+    .taller-detalle strong { font-weight: 600; }
+
+    /* Formulario */
+    .taller-form-wrap {
+      background: var(--negro);
+      padding: 3rem 2.5rem;
+      position: sticky;
+      top: 100px;
+    }
+
+    .taller-form-wrap h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--crema-1);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-sub {
+      font-size: 0.87rem;
+      color: rgba(255,247,230,0.5);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,247,230,0.55);
+      font-weight: 500;
+    }
+
+    .form-group input {
+      background: rgba(255,247,230,0.06);
+      border: 1px solid rgba(255,247,230,0.13);
+      color: var(--crema-1);
+      padding: 0.85rem 1rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.3s;
+      width: 100%;
+    }
+
+    .form-group input::placeholder { color: rgba(255,247,230,0.25); }
+    .form-group input:focus { border-color: var(--terracota); }
+
+    .form-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      margin-bottom: 1.75rem;
+      cursor: pointer;
+    }
+
+    .form-check input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      border: 1px solid rgba(255,247,230,0.3);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      margin-top: 2px;
+    }
+
+    .form-check input[type="checkbox"]:checked {
+      background: var(--terracota);
+      border-color: var(--terracota);
+    }
+
+    .form-check input[type="checkbox"]:checked::after {
+      content: '✓';
+      color: var(--crema-1);
+      font-size: 0.72rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .form-check-label {
+      font-size: 0.85rem;
+      color: rgba(255,247,230,0.6);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    .form-submit {
+      width: 100%;
+      background: var(--terracota);
+      color: var(--crema-1);
+      border: none;
+      padding: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .form-submit:hover {
+      background: var(--terracota-dark);
+      transform: translateY(-2px);
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 0 1rem;
+      color: var(--crema-1);
+    }
+
+    .form-success .success-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+
+    .form-success h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+      color: var(--crema-1);
+    }
+
+    .form-success p {
+      font-size: 0.88rem;
+      opacity: 0.65;
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 0;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--negro);
+      padding: 2.5rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      border-top: 1px solid rgba(255,247,230,0.06);
+    }
+
+    .footer-tagline {
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.35;
+    }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      opacity: 0.25;
+    }
+
+    .footer-logo-img {
+      max-width: 120px;
+      height: auto;
+      opacity: 0.6;
+    }
+
+    /* ─── HAMBURGER ─── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--crema);
+      transition: all 0.3s ease;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+
+      .taller-hero { padding: 7rem 1.5rem 4rem; }
+
+      .taller-main { padding: 4rem 1.5rem; }
+
+      .taller-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .taller-form-wrap { position: static; }
+
+      footer {
+        flex-direction: column;
+        gap: 0.75rem;
+        text-align: center;
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.25rem; }
+
+      .nav-logo-img { height: 34px; }
+
+      .taller-hero {
+        padding: 6rem 1.25rem 3rem;
+        min-height: 40vh;
+      }
+
+      .taller-main { padding: 3.5rem 1.25rem; }
+
+      .taller-form-wrap { padding: 2rem 1.25rem; }
+
+      .taller-desc { font-size: 0.97rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="Logo/4x/Mesa%20de%20trabajo%202%20copia%203%404x.png" alt="Ignisencia" class="nav-logo-img" />
+    </a>
+    <a href="index.html" class="nav-back">← Volver al inicio</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="taller-hero">
+    <div class="taller-hero-inner">
+      <p class="section-label">Próximo evento</p>
+      <h1>El poder<br>del lenguaje</h1>
+      <span class="taller-hero-badge">✦ Sesión online · Gratuita · Abierta al público</span>
+    </div>
+  </div>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="taller-main">
+    <div class="taller-container">
+
+      <!-- Info -->
+      <div class="taller-info">
+        <div class="divider"></div>
+        <p class="taller-desc">
+          Las palabras que usas no solo describen tu realidad — la crean. En esta sesión exploraremos cómo el lenguaje moldea tu identidad, tus relaciones y tu capacidad de transformación. Un espacio para escuchar de otra manera y comenzar a hablar diferente.
+        </p>
+        <div class="taller-detalles">
+          <div class="taller-detalle">
+            <div class="taller-detalle-icon">📅</div>
+            <div><strong>Miércoles 15 de abril, 2026</strong></div>
+          </div>
+          <div class="taller-detalle">
+            <div class="taller-detalle-icon">🕖</div>
+            <div><strong>7:00 pm</strong> · Hora Perú (PET, UTC-5)</div>
+          </div>
+          <div class="taller-detalle">
+            <div class="taller-detalle-icon">💻</div>
+            <div><strong>Online</strong> · El enlace se enviará por correo al registrarte</div>
+          </div>
+          <div class="taller-detalle">
+            <div class="taller-detalle-icon">⏱</div>
+            <div><strong>45 minutos</strong> · sesión en vivo</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario -->
+      <div class="taller-form-wrap">
+        <h3>Reserva tu lugar</h3>
+        <p class="form-sub">Completa el formulario y te enviamos el acceso.</p>
+
+        <form id="tallerForm" onsubmit="submitTaller(event)">
+          <div class="form-group">
+            <label for="taller-nombre">Nombre completo</label>
+            <input type="text" id="taller-nombre" name="nombre" placeholder="Tu nombre" required />
+          </div>
+          <div class="form-group">
+            <label for="taller-celular">Celular / WhatsApp</label>
+            <input type="tel" id="taller-celular" name="celular" placeholder="+51 999 999 999" required />
+          </div>
+          <div class="form-group">
+            <label for="taller-email">Correo electrónico</label>
+            <input type="email" id="taller-email" name="email" placeholder="tu@correo.com" required />
+          </div>
+
+          <label class="form-check">
+            <input type="checkbox" id="taller-info" name="info" />
+            <span class="form-check-label">Sí, quiero recibir información sobre talleres, cursos, charlas gratuitas y novedades de Igniscencia.</span>
+          </label>
+
+          <button type="submit" class="form-submit">Quiero participar ✦</button>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">🔥</div>
+          <h4>¡Estás dentro!</h4>
+          <p>Únete al grupo de WhatsApp para recibir el link de acceso a la sesión. Nos vemos el 15 de abril a las 7:00 p.m. Hora Perú ✨</p>
+          <a href="https://chat.whatsapp.com/EebvtxYaSW65ZRQKjtT9vH?mode=gi_t" target="_blank" style="display:inline-flex;align-items:center;gap:0.6rem;margin-top:1.5rem;background:#25D366;color:#fff;padding:0.85rem 1.5rem;font-family:'Montserrat',sans-serif;font-size:0.85rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Unirme al grupo
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="Logo/4x/Mesa%20de%20trabajo%204%20copia%204%404x.png" alt="Ignisencia" class="footer-logo-img" />
+    <span class="footer-tagline">Estado de transformación</span>
+    <span class="footer-copy">© 2026 Igniscencia</span>
+  </footer>
+
+  <script>
+    function submitTaller(e) {
+      e.preventDefault();
+      const form = document.getElementById('tallerForm');
+      const btn = form.querySelector('.form-submit');
+      const success = document.getElementById('formSuccess');
+
+      const data = {
+        nombre:  document.getElementById('taller-nombre').value,
+        celular: document.getElementById('taller-celular').value,
+        email:   document.getElementById('taller-email').value,
+        info:    document.getElementById('taller-info').checked
+      };
+
+      btn.textContent = 'Enviando...';
+      btn.disabled = true;
+
+      fetch('https://script.google.com/macros/s/AKfycby_lcv92cf26xtF3ccxVWBs_P3lxlnGMUxb_9_LD1eRvZOjkCaGLDjQTOYpzgldrlTr/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(() => {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      })
+      .catch(() => {
+        btn.textContent = 'Quiero participar ✦';
+        btn.disabled = false;
+        alert('Hubo un error al enviar. Por favor intenta de nuevo.');
+      });
+    }
+  </script>
+
+</body>
+</html>
