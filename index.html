@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -1159,11 +1160,11 @@
       <img src="Logo/4x/Mesa%20de%20trabajo%202%20copia%203%404x.png" alt="Ignisencia" class="nav-logo-img" />
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#definicion">La idea</a></li>
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#para-quien">Para quién</a></li>
-      <li><a href="#taller" style="color: var(--terracota); font-weight: 500;">Taller</a></li>
-      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#definicion" onclick="closeMenu()">La idea</a></li>
+      <li><a href="#servicios" onclick="closeMenu()">Servicios</a></li>
+      <li><a href="#para-quien" onclick="closeMenu()">Para quién</a></li>
+      <li><a href="#taller" onclick="closeMenu()" style="color: var(--terracota); font-weight: 500;">Taller</a></li>
+      <li><a href="#contacto" onclick="closeMenu()">Contacto</a></li>
     </ul>
     <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
       <span></span>
@@ -1513,21 +1514,6 @@
       document.getElementById('navOverlay').classList.remove('open');
       document.body.style.overflow = '';
     }
-
-    // Nav links: close menu first, then scroll to section
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href && href.startsWith('#')) {
-          e.preventDefault();
-          closeMenu();
-          setTimeout(() => {
-            const target = document.querySelector(href);
-            if (target) target.scrollIntoView({ behavior: 'smooth' });
-          }, 350);
-        }
-      });
-    });
 
     // Taller form submission → Google Sheets
     function submitTaller(e) {
