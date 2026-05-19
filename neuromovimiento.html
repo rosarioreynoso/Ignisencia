@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sesión de Neuromovimiento — Ignisencia</title>
+  <link rel="icon" type="image/png" href="Logo/Foto%20de%20Perfil.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/bacalisties');
+
+    :root {
+      --crema-1:        #fff7e6;
+      --crema-2:        #ebd7cd;
+      --terracota:      #be6e4b;
+      --terracota-dark: #9b6149;
+      --marron:         #6a3118;
+      --negro:          #1a0f08;
+      --gris:           #5a4035;
+      --crema:          var(--crema-1);
+      --whatsapp:       #25D366;
+      --whatsapp-dark:  #128C7E;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--negro);
+      color: var(--crema);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(26,15,8,0.97), transparent);
+    }
+
+    .nav-logo {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo-img {
+      height: 42px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-back {
+      color: var(--crema);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: opacity 0.2s;
+    }
+
+    .nav-back:hover { opacity: 1; }
+
+    /* ─── HERO ─── */
+    .neuro-hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 8rem 4rem 5rem;
+      background:
+        linear-gradient(135deg, rgba(26,15,8,0.85) 0%, rgba(106,49,24,0.55) 50%, rgba(155,98,73,0.55) 100%),
+        radial-gradient(ellipse 80% 60% at 70% 30%, rgba(190,110,75,0.45) 0%, transparent 65%),
+        var(--negro);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .neuro-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 80%, rgba(190,110,75,0.18) 0%, transparent 35%),
+        radial-gradient(circle at 80% 20%, rgba(253,247,230,0.08) 0%, transparent 30%);
+      pointer-events: none;
+    }
+
+    .neuro-hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--terracota);
+      margin-bottom: 1.25rem;
+      font-weight: 400;
+    }
+
+    .neuro-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--crema);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .neuro-hero h1 em {
+      font-style: italic;
+      color: var(--terracota);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,247,230,0.08);
+      border: 1px solid rgba(255,247,230,0.2);
+      color: var(--crema-1);
+      padding: 0.5rem 1.1rem;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-pill.accent {
+      background: var(--terracota);
+      border-color: var(--terracota);
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .btn-primary, .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: var(--whatsapp);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--whatsapp-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--crema);
+      border: 1px solid var(--crema);
+    }
+
+    .btn-secondary:hover {
+      background: var(--crema);
+      color: var(--negro);
+    }
+
+    /* ─── SECTION BASE ─── */
+    section {
+      padding: 6rem 4rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--terracota);
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--terracota);
+      margin: 1.5rem 0;
+    }
+
+    /* ─── PROBLEMA / ESTADÍSTICA ─── */
+    .problema {
+      background: var(--crema-1);
+      color: var(--negro);
+    }
+
+    .problema .section-label { color: var(--terracota); }
+    .problema .section-title { color: var(--negro); }
+
+    .problema-inner {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, var(--marron) 0%, var(--terracota-dark) 100%);
+      color: var(--crema);
+      padding: 3.5rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 100% 0%, rgba(255,247,230,0.12) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(4rem, 10vw, 6rem);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--crema-1);
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .stat-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--crema-1);
+      font-weight: 300;
+      position: relative;
+    }
+
+    .stat-text strong { font-weight: 600; }
+
+    .stat-source {
+      margin-top: 1.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      position: relative;
+    }
+
+    .problema-text p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--gris);
+      font-weight: 300;
+      margin-bottom: 1.25rem;
+    }
+
+    .problema-text strong {
+      color: var(--negro);
+      font-weight: 600;
+    }
+
+    /* ─── QUOTE NEUROCIENCIA ─── */
+    .neuro-quote {
+      background: var(--negro);
+      padding: 7rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .neuro-quote::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(106,49,24,0.25) 0%, transparent 70%);
+    }
+
+    .neuro-quote-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+    }
+
+    .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 6rem;
+      color: var(--terracota);
+      opacity: 0.4;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-style: italic;
+      line-height: 1.4;
+      color: var(--crema);
+      margin-bottom: 2rem;
+    }
+
+    .quote-text em {
+      color: var(--terracota);
+      font-style: italic;
+    }
+
+    .quote-source {
+      font-size: 0.78rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--terracota);
+      opacity: 0.85;
+    }
+
+    /* ─── RECONOCES ─── */
+    .reconoces-section {
+      background: var(--crema-2);
+      color: var(--negro);
+    }
+
+    .reconoces-section .section-label { color: var(--terracota-dark); }
+    .reconoces-section .section-title { color: var(--negro); }
+
+    .reconoces-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .reconoce-card {
+      background: var(--crema-1);
+      padding: 2.5rem 2rem;
+      border-left: 3px solid var(--terracota);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .reconoce-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(106,49,24,0.15);
+    }
+
+    .reconoce-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--negro);
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+
+    .reconoce-followup {
+      font-size: 0.95rem;
+      color: var(--gris);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    /* ─── BENEFICIOS ─── */
+    .beneficios {
+      background: var(--negro);
+      color: var(--crema);
+    }
+
+    .beneficios .section-label { color: var(--terracota); }
+
+    .beneficios-intro {
+      max-width: 700px;
+      margin: 0 auto 4rem;
+      text-align: center;
+    }
+
+    .beneficios-intro p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      opacity: 0.8;
+      font-weight: 300;
+    }
+
+    .beneficios-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .beneficio-card {
+      background: rgba(253,247,230,0.04);
+      border: 1px solid rgba(190,110,75,0.25);
+      padding: 2.5rem 2rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .beneficio-card:hover {
+      border-color: var(--terracota);
+      background: rgba(253,247,230,0.07);
+      transform: translateY(-4px);
+    }
+
+    .beneficio-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--terracota);
+      opacity: 0.5;
+      line-height: 1;
+      margin-bottom: 1.25rem;
+      font-style: italic;
+    }
+
+    .beneficio-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--crema);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .beneficio-card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--crema);
+      opacity: 0.7;
+      font-weight: 300;
+    }
+
+    .beneficio-card p em {
+      color: var(--terracota);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    /* ─── DETALLES SESIÓN ─── */
+    .detalles-section {
+      background: var(--crema-1);
+      color: var(--negro);
+    }
+
+    .detalles-section .section-label { color: var(--terracota); }
+    .detalles-section .section-title { color: var(--negro); }
+
+    .detalles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .detalle-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      padding: 1.5rem;
+      background: #fff;
+      border: 1px solid rgba(190,110,75,0.15);
+    }
+
+    .detalle-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(190,110,75,0.12);
+      border: 1px solid rgba(190,110,75,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.25rem;
+    }
+
+    .detalle-content h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracota);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .detalle-content p {
+      font-size: 1rem;
+      color: var(--negro);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .detalle-content p span {
+      color: var(--gris);
+      font-weight: 300;
+      font-size: 0.9rem;
+      display: block;
+      margin-top: 0.2rem;
+    }
+
+    /* ─── BOOKING ─── */
+    .booking-section {
+      background: var(--negro);
+      color: var(--crema);
+      padding: 6rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .booking-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(190,110,75,0.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .booking-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .booking-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .booking-header .section-label { color: var(--terracota); }
+
+    .booking-header p {
+      max-width: 600px;
+      margin: 1rem auto 0;
+      font-size: 1rem;
+      line-height: 1.7;
+      opacity: 0.75;
+      font-weight: 300;
+    }
+
+    .booking-card {
+      max-width: 720px;
+      margin: 0 auto;
+      background: rgba(253,247,230,0.04);
+      border: 1px solid rgba(190,110,75,0.3);
+      padding: 3rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .booking-step {
+      margin-bottom: 2.5rem;
+    }
+
+    .booking-step:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .step-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--terracota);
+      color: var(--crema-1);
+      font-size: 0.78rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--crema-1);
+    }
+
+    /* Modalidad selector */
+    .modalidad-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .option-btn {
+      background: rgba(253,247,230,0.05);
+      border: 1px solid rgba(255,247,230,0.15);
+      color: var(--crema);
+      padding: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .option-btn:hover {
+      border-color: var(--terracota);
+      background: rgba(190,110,75,0.1);
+    }
+
+    .option-btn.selected {
+      background: var(--terracota);
+      border-color: var(--terracota);
+      color: var(--crema-1);
+      font-weight: 600;
+    }
+
+    .option-btn .opt-icon {
+      display: block;
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    /* Date selector */
+    .date-scroll {
+      display: flex;
+      gap: 0.6rem;
+      overflow-x: auto;
+      padding-bottom: 0.75rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--terracota) transparent;
+    }
+
+    .date-scroll::-webkit-scrollbar { height: 6px; }
+    .date-scroll::-webkit-scrollbar-track { background: rgba(255,247,230,0.05); }
+    .date-scroll::-webkit-scrollbar-thumb { background: var(--terracota); }
+
+    .date-btn {
+      flex-shrink: 0;
+      min-width: 80px;
+      background: rgba(253,247,230,0.05);
+      border: 1px solid rgba(255,247,230,0.15);
+      color: var(--crema);
+      padding: 0.85rem 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .date-btn:hover {
+      border-color: var(--terracota);
+      background: rgba(190,110,75,0.1);
+    }
+
+    .date-btn.selected {
+      background: var(--terracota);
+      border-color: var(--terracota);
+      color: var(--crema-1);
+    }
+
+    .date-day {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 0.3rem;
+    }
+
+    .date-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+
+    .date-month {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+
+    .date-btn.selected .date-day,
+    .date-btn.selected .date-month {
+      opacity: 0.9;
+    }
+
+    /* Time slots */
+    .time-block {
+      margin-bottom: 1.25rem;
+    }
+
+    .time-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .time-block-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,247,230,0.55);
+      margin-bottom: 0.6rem;
+      font-weight: 500;
+    }
+
+    .time-options {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+    }
+
+    .time-btn {
+      background: rgba(253,247,230,0.05);
+      border: 1px solid rgba(255,247,230,0.15);
+      color: var(--crema);
+      padding: 0.75rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .time-btn:hover {
+      border-color: var(--terracota);
+      background: rgba(190,110,75,0.1);
+    }
+
+    .time-btn.selected {
+      background: var(--terracota);
+      border-color: var(--terracota);
+      color: var(--crema-1);
+      font-weight: 600;
+    }
+
+    /* Name field */
+    .name-input {
+      width: 100%;
+      background: rgba(255,247,230,0.06);
+      border: 1px solid rgba(255,247,230,0.13);
+      color: var(--crema-1);
+      padding: 0.9rem 1rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .name-input::placeholder { color: rgba(255,247,230,0.3); }
+    .name-input:focus { border-color: var(--terracota); }
+
+    .name-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .booking-cta {
+      margin-top: 2.5rem;
+      text-align: center;
+    }
+
+    .booking-summary {
+      font-size: 0.9rem;
+      color: rgba(255,247,230,0.7);
+      margin-bottom: 0.5rem;
+      font-weight: 300;
+      min-height: 1.4em;
+    }
+
+    .booking-summary strong {
+      color: var(--terracota);
+      font-weight: 600;
+    }
+
+    .booking-precio {
+      font-size: 0.85rem;
+      color: rgba(255,247,230,0.55);
+      margin-bottom: 1.25rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+    }
+
+    .booking-precio strong {
+      color: var(--crema-1);
+      font-weight: 600;
+    }
+
+    .booking-disclaimer {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: rgba(255,247,230,0.4);
+      line-height: 1.5;
+      font-weight: 300;
+      max-width: 380px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .reserve-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      background: var(--whatsapp);
+      color: #fff;
+      border: none;
+      padding: 1.1rem 2.5rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      max-width: 360px;
+    }
+
+    .reserve-btn:hover:not(:disabled) {
+      background: var(--whatsapp-dark);
+      transform: translateY(-2px);
+    }
+
+    .reserve-btn:disabled {
+      background: rgba(37,211,102,0.3);
+      cursor: not-allowed;
+    }
+
+    /* ─── INFO CTA (mensajear primero) ─── */
+    .info-cta {
+      background: var(--crema-1);
+      color: var(--negro);
+      text-align: center;
+      padding: 5rem 4rem;
+      border-bottom: 1px solid rgba(190,110,75,0.15);
+    }
+
+    .info-cta .section-label { color: var(--terracota); }
+    .info-cta .section-title { color: var(--negro); }
+
+    .info-cta p {
+      max-width: 580px;
+      margin: 1rem auto 2rem;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--gris);
+      font-weight: 300;
+    }
+
+    .info-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: var(--whatsapp);
+      color: #fff;
+      text-decoration: none;
+      padding: 1.1rem 2.4rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .info-cta-btn:hover {
+      background: var(--whatsapp-dark);
+      transform: translateY(-2px);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--negro);
+      padding: 2.5rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      border-top: 1px solid rgba(255,247,230,0.06);
+    }
+
+    .footer-tagline {
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.35;
+    }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      opacity: 0.25;
+    }
+
+    .footer-logo-img {
+      max-width: 120px;
+      height: auto;
+      opacity: 0.6;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      section { padding: 4rem 1.5rem; }
+
+      .neuro-hero { padding: 7rem 1.5rem 4rem; }
+
+      .problema-inner,
+      .detalles-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .reconoces-grid,
+      .beneficios-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .neuro-quote { padding: 5rem 1.5rem; }
+
+      .booking-section { padding: 4rem 1.5rem; }
+      .booking-card { padding: 2rem 1.5rem; }
+
+      .time-options { grid-template-columns: repeat(2, 1fr); }
+
+      .info-cta { padding: 4rem 1.5rem; }
+
+      footer {
+        flex-direction: column;
+        gap: 0.75rem;
+        text-align: center;
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-logo-img { height: 34px; }
+
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+
+      .stat-card { padding: 2.5rem 1.75rem; }
+
+      .booking-card { padding: 1.75rem 1.25rem; }
+
+      .modalidad-options { grid-template-columns: 1fr; }
+    }
+
+    /* fade in */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="Logo/4x/Mesa%20de%20trabajo%202%20copia%203%404x.png" alt="Ignisencia" class="nav-logo-img" />
+    </a>
+    <a href="index.html" class="nav-back">← Volver al inicio</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="neuro-hero">
+    <div class="neuro-hero-inner">
+      <p class="hero-label">Sesión 1 a 1 · Virtual</p>
+      <h1>Sesión de<br><em>Neuromovimiento</em></h1>
+      <div class="hero-meta">
+        <span class="hero-pill accent">✦ 60 minutos</span>
+        <span class="hero-pill">💻 Virtual</span>
+        <span class="hero-pill">💸 S/ 150</span>
+        <span class="hero-pill">🇵🇪 Lun a Vie · 12-3pm o 5-8pm</span>
+      </div>
+      <div class="hero-actions">
+        <a id="heroReserveBtn" href="#booking" class="btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Reservar mi sesión
+        </a>
+        <a href="https://wa.me/51993500262?text=Hola%20Chari%2C%20quiero%20saber%20m%C3%A1s%20sobre%20la%20Sesi%C3%B3n%20de%20Neuromovimiento%20%E2%9C%A6" target="_blank" class="btn-secondary">
+          Charlar primero
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMA / ESTADÍSTICA -->
+  <section class="problema">
+    <div class="container">
+      <div class="problema-inner">
+        <div class="fade-in">
+          <p class="section-label">El estado actual</p>
+          <h2 class="section-title">Cuerpo tenso,<br>mente atrapada.</h2>
+          <div class="divider"></div>
+          <p>
+            Vivimos pensando que <strong>la mente decide</strong>. Pero es el cuerpo el que envía las señales. Un sistema nervioso en modo supervivencia produce rigidez física, niebla mental y decisiones que vienen del miedo, no de la claridad.
+          </p>
+          <p>
+            La buena noticia: <strong>el cuerpo también es la puerta de salida</strong>. Con neurociencia + movimiento consciente, podemos regular tu sistema desde adentro.
+          </p>
+        </div>
+        <div class="stat-card fade-in">
+          <div class="stat-number">44%</div>
+          <p class="stat-text">
+            de los trabajadores en <strong>Latinoamérica</strong> reportó haber sentido <em>"mucho estrés"</em> durante la mayor parte del día anterior.
+          </p>
+          <p class="stat-source">Fuente: Gallup, State of the Global Workplace 2024</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE NEUROCIENCIA -->
+  <section class="neuro-quote">
+    <div class="neuro-quote-inner fade-in">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">
+        No puedes tener una <em>mente flexible</em><br>en un <em>cuerpo rígido</em>.
+      </p>
+      <p class="quote-source">Antonio Damasio · Descartes' Error (1994)</p>
+    </div>
+  </section>
+
+  <!-- RECONOCES -->
+  <section class="reconoces-section">
+    <div class="container">
+      <div class="fade-in" style="text-align: center;">
+        <p class="section-label">¿Te suena familiar?</p>
+        <h2 class="section-title">Las frases que más<br>escucho en sesión</h2>
+      </div>
+      <div class="reconoces-grid">
+        <div class="reconoce-card fade-in">
+          <p class="reconoce-quote">"Tengo buenas ideas"</p>
+          <p class="reconoce-followup">…pero no las digo.</p>
+        </div>
+        <div class="reconoce-card fade-in">
+          <p class="reconoce-quote">"Me gustaría probar"</p>
+          <p class="reconoce-followup">…pero no me atrevo.</p>
+        </div>
+        <div class="reconoce-card fade-in">
+          <p class="reconoce-quote">"No sé lo que quiero"</p>
+          <p class="reconoce-followup">…y no sé por qué.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS -->
+  <section class="beneficios">
+    <div class="container">
+      <div class="fade-in" style="text-align: center;">
+        <p class="section-label">Qué vas a lograr</p>
+        <h2 class="section-title">Con base en neurociencia<br>y movimiento corporal</h2>
+      </div>
+      <div class="beneficios-intro fade-in">
+        <p>
+          La Sesión de Neuromovimiento no es una clase de yoga, no es terapia, no es coaching tradicional. Es un espacio diseñado para que <em>tu cuerpo enseñe a tu mente</em> un nuevo lenguaje — uno que se siente, no se estudia.
+        </p>
+      </div>
+      <div class="beneficios-grid">
+        <div class="beneficio-card fade-in">
+          <div class="beneficio-num">01</div>
+          <h3>Salir del piloto automático</h3>
+          <p>Descubrir cómo tu mente entra en la <em>red neuronal por defecto</em> y aprender a tomar las riendas de regreso. Un lenguaje que se siente, no se estudia.</p>
+        </div>
+        <div class="beneficio-card fade-in">
+          <div class="beneficio-num">02</div>
+          <h3>Despertar energía real</h3>
+          <p>No la del café — la que viene de un <em>sistema nervioso regulado</em>. Cambios biológicos que te dan vitalidad sostenible.</p>
+        </div>
+        <div class="beneficio-card fade-in">
+          <div class="beneficio-num">03</div>
+          <h3>Decidir desde la claridad</h3>
+          <p>No desde el miedo ni el agotamiento. La <em>claridad mental</em> no se fuerza — se habilita cuando el cuerpo se siente seguro.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETALLES SESIÓN -->
+  <section class="detalles-section" id="detalles">
+    <div class="container">
+      <div class="fade-in" style="text-align: center;">
+        <p class="section-label">Cómo funciona</p>
+        <h2 class="section-title">Los detalles de tu sesión</h2>
+      </div>
+      <div class="detalles-grid">
+        <div class="detalle-item fade-in">
+          <div class="detalle-icon">⏱</div>
+          <div class="detalle-content">
+            <h4>Duración</h4>
+            <p>60 minutos<span>Tiempo suficiente para entrar, transformar y volver con claridad.</span></p>
+          </div>
+        </div>
+        <div class="detalle-item fade-in">
+          <div class="detalle-icon">💻</div>
+          <div class="detalle-content">
+            <h4>Modalidad</h4>
+            <p>Virtual<span>Por Google Meet o Zoom. Recibirás el link al confirmar tu reserva.</span></p>
+          </div>
+        </div>
+        <div class="detalle-item fade-in">
+          <div class="detalle-icon">📅</div>
+          <div class="detalle-content">
+            <h4>Disponibilidad</h4>
+            <p>Lunes a Viernes<span>12:00 — 3:00 p.m. y 5:00 — 8:00 p.m. (Hora Perú)</span></p>
+          </div>
+        </div>
+        <div class="detalle-item fade-in">
+          <div class="detalle-icon">💸</div>
+          <div class="detalle-content">
+            <h4>Inversión</h4>
+            <p>S/ 150<span>Pago por Yape, Plin o transferencia. Se confirma al reservar.</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO CTA (charlar primero) -->
+  <section class="info-cta">
+    <div class="container fade-in">
+      <p class="section-label">¿Tienes preguntas?</p>
+      <h2 class="section-title">Charlemos antes</h2>
+      <p>
+        Si quieres saber más antes de reservar, escríbeme <strong>NEUROMOVIMIENTO</strong> por WhatsApp y te cuento todo de la sesión sin compromiso.
+      </p>
+      <a href="https://wa.me/51993500262?text=NEUROMOVIMIENTO%20%E2%9C%A6%20Quiero%20saber%20m%C3%A1s%20sobre%20la%20Sesi%C3%B3n%20de%20Neuromovimiento" target="_blank" class="info-cta-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Escríbeme NEUROMOVIMIENTO
+      </a>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section class="booking-section" id="booking">
+    <div class="container booking-inner">
+      <div class="booking-header fade-in">
+        <p class="section-label">Reservar</p>
+        <h2 class="section-title">Elige tu día y hora</h2>
+        <p>
+          Selecciona la fecha y el horario que te acomoden, completa tus datos y te enviamos a WhatsApp para que Chari confirme tu reserva.
+        </p>
+      </div>
+
+      <div class="booking-card fade-in">
+
+        <!-- Paso 1: Fecha -->
+        <div class="booking-step">
+          <div class="step-label">
+            <div class="step-num">1</div>
+            <div class="step-title">Elige el día</div>
+          </div>
+          <div class="date-scroll" id="dateScroll"></div>
+        </div>
+
+        <!-- Paso 2: Hora -->
+        <div class="booking-step">
+          <div class="step-label">
+            <div class="step-num">2</div>
+            <div class="step-title">Elige la hora</div>
+          </div>
+          <div class="time-block">
+            <p class="time-block-label">Mediodía · 12:00 — 3:00 p.m.</p>
+            <div class="time-options">
+              <button class="time-btn" data-time="12:00 p.m." onclick="selectTime(this)">12:00 pm</button>
+              <button class="time-btn" data-time="1:00 p.m." onclick="selectTime(this)">1:00 pm</button>
+              <button class="time-btn" data-time="2:00 p.m." onclick="selectTime(this)">2:00 pm</button>
+            </div>
+          </div>
+          <div class="time-block">
+            <p class="time-block-label">Tarde · 5:00 — 8:00 p.m.</p>
+            <div class="time-options">
+              <button class="time-btn" data-time="5:00 p.m." onclick="selectTime(this)">5:00 pm</button>
+              <button class="time-btn" data-time="6:00 p.m." onclick="selectTime(this)">6:00 pm</button>
+              <button class="time-btn" data-time="7:00 p.m." onclick="selectTime(this)">7:00 pm</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 3: Tus datos -->
+        <div class="booking-step">
+          <div class="step-label">
+            <div class="step-num">3</div>
+            <div class="step-title">Tus datos</div>
+          </div>
+          <div class="name-fields">
+            <input type="text" id="userFirstName" class="name-input" placeholder="Nombre" oninput="updateSummary()" />
+            <input type="text" id="userLastName" class="name-input" placeholder="Apellido" oninput="updateSummary()" />
+          </div>
+          <input type="tel" id="userPhone" class="name-input" placeholder="Teléfono / WhatsApp · +51 999 999 999" oninput="updateSummary()" style="margin-top: 0.75rem;" />
+        </div>
+
+        <!-- CTA -->
+        <div class="booking-cta">
+          <p class="booking-summary" id="bookingSummary">Elige día, hora y completa tus datos para reservar</p>
+          <p class="booking-precio">Inversión: <strong>S/ 150</strong> · 60 minutos · Virtual</p>
+          <button id="reserveBtn" class="reserve-btn" disabled onclick="reservarPorWhatsApp()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Reservar por WhatsApp
+          </button>
+          <p class="booking-disclaimer">Al reservar se abrirá WhatsApp con tu reserva pre-completada para enviar a Chari.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="Logo/4x/Mesa%20de%20trabajo%204%20copia%204%404x.png" alt="Ignisencia" class="footer-logo-img" />
+    <span class="footer-tagline">Estado de transformación</span>
+    <span class="footer-copy">© 2026 Igniscencia</span>
+  </footer>
+
+  <script>
+    // Configuración
+    const WHATSAPP_NUMBER = '51993500262';
+    const DIAS_SEMANA = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+    const DIAS_SHORT = ['DOM', 'LUN', 'MAR', 'MIÉ', 'JUE', 'VIE', 'SÁB'];
+    const MESES = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                   'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    const MESES_SHORT = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN',
+                         'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
+
+    // Estado
+    let selectedDate = null;
+    let selectedDateText = null;
+    let selectedTime = null;
+
+    // Generar próximos 14 días hábiles (Lun-Vie) desde hoy
+    function generateDates() {
+      const container = document.getElementById('dateScroll');
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      let count = 0;
+      let current = new Date(today);
+
+      while (count < 14) {
+        const dayOfWeek = current.getDay();
+        // 1=Lun, 2=Mar, 3=Mié, 4=Jue, 5=Vie
+        if (dayOfWeek >= 1 && dayOfWeek <= 5) {
+          const dateStr = `${DIAS_SEMANA[dayOfWeek]} ${current.getDate()} de ${MESES[current.getMonth()]}`;
+          const isoStr = current.toISOString().split('T')[0];
+
+          const btn = document.createElement('button');
+          btn.className = 'date-btn';
+          btn.setAttribute('data-date', isoStr);
+          btn.setAttribute('data-date-text', dateStr);
+          btn.innerHTML = `
+            <div class="date-day">${DIAS_SHORT[dayOfWeek]}</div>
+            <div class="date-num">${current.getDate()}</div>
+            <div class="date-month">${MESES_SHORT[current.getMonth()]}</div>
+          `;
+          btn.onclick = () => selectDate(btn);
+          container.appendChild(btn);
+          count++;
+        }
+        current.setDate(current.getDate() + 1);
+      }
+    }
+
+    function selectDate(btn) {
+      document.querySelectorAll('.date-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedDate = btn.getAttribute('data-date');
+      selectedDateText = btn.getAttribute('data-date-text');
+      updateSummary();
+    }
+
+    function selectTime(btn) {
+      document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedTime = btn.getAttribute('data-time');
+      updateSummary();
+    }
+
+    function updateSummary() {
+      const summary = document.getElementById('bookingSummary');
+      const reserveBtn = document.getElementById('reserveBtn');
+      const firstName = document.getElementById('userFirstName').value.trim();
+      const lastName  = document.getElementById('userLastName').value.trim();
+      const phone     = document.getElementById('userPhone').value.trim();
+
+      const hasAll = selectedDate && selectedTime && firstName && lastName && phone;
+
+      if (hasAll) {
+        summary.innerHTML = `<strong>${firstName} ${lastName}</strong> · ${selectedDateText} · <strong>${selectedTime}</strong>`;
+        reserveBtn.disabled = false;
+      } else {
+        const missing = [];
+        if (!selectedDate) missing.push('día');
+        if (!selectedTime) missing.push('hora');
+        if (!firstName) missing.push('nombre');
+        if (!lastName) missing.push('apellido');
+        if (!phone) missing.push('teléfono');
+        summary.textContent = `Falta: ${missing.join(', ')}`;
+        reserveBtn.disabled = true;
+      }
+    }
+
+    function reservarPorWhatsApp() {
+      const firstName = document.getElementById('userFirstName').value.trim();
+      const lastName  = document.getElementById('userLastName').value.trim();
+      const phone     = document.getElementById('userPhone').value.trim();
+
+      if (!selectedDate || !selectedTime || !firstName || !lastName || !phone) return;
+
+      const mensaje =
+        `Hola Chari ✦ Quiero reservar una Sesión de Neuromovimiento.\n\n` +
+        `• Nombre: ${firstName} ${lastName}\n` +
+        `• Teléfono: ${phone}\n` +
+        `• Día: ${selectedDateText}\n` +
+        `• Hora: ${selectedTime} (Hora Perú)\n` +
+        `• Modalidad: Virtual · 60 minutos\n` +
+        `• Inversión: S/ 150\n\n` +
+        `¿Me confirmas la disponibilidad y la forma de pago? Gracias 🙏`;
+
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`;
+      window.open(url, '_blank');
+    }
+
+    // Fade-in observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Init
+    generateDates();
+  </script>
+
+</body>
+</html>
