@@ -5,980 +5,1222 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ignisencia — Estado de transformación</title>
-  <meta name="description" content="Neurociencia + movimiento + coaching para encontrar tu punto de ignición. Acompañamiento para profesionales que buscan vivir desde su autenticidad." />
   <link rel="icon" type="image/png" href="Logo/Foto%20de%20Perfil.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Bacalisties font (script/decorative) - loaded via @font-face if available, else fallback -->
   <style>
-    /* ═══════════ TOKENS ═══════════ */
+    @import url('https://fonts.cdnfonts.com/css/bacalisties');
+
     :root {
-      /* Brandbook colors */
-      --crema:        #fff7e6;   /* fondo principal */
-      --crema-2:      #f5e6d3;   /* fondo alterno */
-      --crema-3:      #ebd7cd;   /* blush */
-      --terracota:    #be6e4b;   /* acento principal */
-      --terracota-2:  #9b6149;   /* terracota oscuro / brand */
-      --marron:       #6a3118;   /* marrón profundo */
-      --negro:        #1a0f08;   /* fondo oscuro */
-      --gris:         #5a4035;   /* texto secundario */
-      --linea:        rgba(106,49,24,0.18);
+      /* Official Igniscencia color palette */
+      --crema-1:    #fff7e6;   /* lightest cream */
+      --crema-2:    #ebd7cd;   /* blush */
+      --terracota:  #be6e4b;   /* medium terracota */
+      --terracota-dark: #9b6149; /* brand terracota */
+      --marron:     #6a3118;   /* darkest brown */
+      --negro:      #1a0f08;   /* deep background */
+      --gris:       #5a4035;
 
-      /* Tipografía */
-      --serif: 'Fraunces', 'Playfair Display', Georgia, serif;
-      --sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-
-      /* Sizing */
-      --container: 1240px;
-      --gutter: 2rem;
-
-      /* Motion */
-      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      /* Aliases for legibility */
+      --crema: var(--crema-1);
+      --crema-dark: var(--crema-2);
+      --terracota-light: var(--terracota);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     html {
       scroll-behavior: smooth;
-      -webkit-text-size-adjust: 100%;
     }
 
     body {
-      font-family: var(--sans);
-      background: var(--crema);
-      color: var(--negro);
-      font-weight: 300;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--negro);
+      color: var(--crema);
       overflow-x: hidden;
     }
 
-    img, svg { display: block; max-width: 100%; }
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
-
-    .container {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-    }
-
-    .visually-hidden {
-      position: absolute; width: 1px; height: 1px;
-      padding: 0; margin: -1px; overflow: hidden;
-      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-    }
-
-    /* ═══════════ TYPOGRAPHY ═══════════ */
-    .eyebrow {
-      font-family: var(--sans);
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--terracota);
-    }
-
-    .eyebrow.dot::before {
-      content: '';
-      display: inline-block;
-      width: 6px; height: 6px;
-      background: var(--terracota);
-      border-radius: 50%;
-      margin-right: 0.8rem;
-      vertical-align: middle;
-      margin-top: -3px;
-    }
-
-    .display {
-      font-family: var(--serif);
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1.02;
-      font-variation-settings: 'opsz' 144;
-    }
-
-    .display em {
-      font-style: italic;
-      font-weight: 400;
-      color: var(--terracota);
-    }
-
-    h2.display { font-size: clamp(2.5rem, 6.5vw, 5rem); }
-    h3.display { font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
-
-    .lead {
-      font-size: clamp(1.05rem, 1.3vw, 1.2rem);
-      line-height: 1.65;
-      color: var(--gris);
-      font-weight: 300;
-      max-width: 56ch;
-    }
-
-    /* ═══════════ NAV ═══════════ */
-    nav.site {
+    /* ─── NAV ─── */
+    nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      width: 100%;
       z-index: 100;
-      padding: 1.2rem var(--gutter);
+      padding: 1.5rem 4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: all 0.4s var(--ease);
+      background: linear-gradient(to bottom, rgba(26,15,8,0.97), transparent);
     }
 
-    nav.site::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(255, 247, 230, 0);
-      backdrop-filter: blur(0px);
-      -webkit-backdrop-filter: blur(0px);
-      transition: all 0.4s var(--ease);
-      z-index: -1;
+    .nav-logo {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
     }
 
-    nav.site.scrolled { padding: 0.85rem var(--gutter); }
-    nav.site.scrolled::before {
-      background: rgba(255, 247, 230, 0.85);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--linea);
-    }
-
-    .nav-logo { display: flex; align-items: center; gap: 0.7rem; }
-    .nav-logo-mark { height: 36px; width: auto; }
-    .nav-logo-text {
-      font-family: var(--serif);
-      font-size: 1.2rem;
-      font-weight: 500;
-      color: var(--negro);
-      letter-spacing: -0.01em;
+    .nav-logo-img {
+      height: 42px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 6px;
     }
 
     .nav-links {
       display: flex;
-      align-items: center;
-      gap: 2.2rem;
+      gap: 2.5rem;
       list-style: none;
     }
 
     .nav-links a {
-      font-size: 0.82rem;
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      color: var(--negro);
+      color: var(--crema);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
       opacity: 0.75;
       transition: opacity 0.3s;
-      position: relative;
     }
 
-    .nav-links a:not(.nav-cta)::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: 1px;
-      background: var(--terracota);
-      transition: width 0.3s var(--ease);
+    .nav-links a:hover {
+      opacity: 1;
     }
-    .nav-links a:not(.nav-cta):hover { opacity: 1; }
-    .nav-links a:not(.nav-cta):hover::after { width: 100%; }
 
-    .nav-cta {
-      padding: 0.65rem 1.4rem;
-      background: var(--negro);
-      color: var(--crema);
-      border-radius: 999px;
-      opacity: 1 !important;
-      font-weight: 500;
-      transition: background 0.3s, transform 0.3s;
-    }
-    .nav-cta:hover { background: var(--terracota); transform: translateY(-1px); }
-
-    .nav-hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      padding: 6px;
-    }
-    .nav-hamburger span {
-      display: block; width: 22px; height: 1.6px;
-      background: var(--negro);
-      transition: all 0.3s var(--ease);
-    }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.6px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.6px) rotate(-45deg); }
-
-    /* ═══════════ HERO ═══════════ */
+    /* ─── HERO ─── */
     .hero {
-      position: relative;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 7rem 1.5rem 4rem;
-      background-image: url('hero-ignisencia.png');
-      background-size: cover;
-      background-position: center;
-      background-color: var(--negro);
-      color: var(--crema);
+      padding: 6rem 2rem 4rem;
+      position: relative;
       overflow: hidden;
+      background-image: url('Pagina%20web/hero%20image%20web.png');
+      background-size: cover;
+      background-position: center 40%;
+      background-repeat: no-repeat;
     }
 
-    .hero::after {
+    .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom,
-        rgba(26,15,8,0) 0%,
-        rgba(26,15,8,0) 55%,
-        rgba(26,15,8,0.6) 100%);
+      background:
+        linear-gradient(to bottom, rgba(26,15,8,0.55) 0%, rgba(26,15,8,0.35) 40%, rgba(26,15,8,0.75) 100%),
+        radial-gradient(ellipse 70% 40% at 50% 80%, rgba(106,49,24,0.5) 0%, transparent 70%);
       pointer-events: none;
+      z-index: 0;
     }
 
-    .hero > * { position: relative; z-index: 1; }
-
-    .hero-claim {
-      font-family: var(--serif);
-      font-style: italic;
-      font-weight: 300;
-      font-size: clamp(1.1rem, 1.8vw, 1.4rem);
-      line-height: 1.55;
-      max-width: 580px;
-      margin: 0 auto 2.5rem;
-      opacity: 0.96;
-      text-shadow: 0 2px 30px rgba(0,0,0,0.5);
+    .hero > * {
+      position: relative;
+      z-index: 1;
     }
-    .hero-claim strong { font-weight: 500; font-style: normal; }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.8rem;
-      padding: 1.05rem 2.2rem;
-      border-radius: 999px;
-      font-family: var(--sans);
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
+    .hero-submark {
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-submark-img {
+      height: 80px;
+      width: auto;
+      opacity: 0.85;
+      filter: drop-shadow(0 0 30px rgba(190,110,75,0.5));
+    }
+
+    .hero-logo-img {
+      max-width: min(520px, 80vw);
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 2px 20px rgba(26,15,8,0.5));
+    }
+
+    .hero-tagline {
+      font-size: 0.8rem;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
-      transition: transform 0.35s var(--ease), background 0.35s, color 0.35s, box-shadow 0.35s;
-      will-change: transform;
+      color: var(--terracota-light);
+      margin-bottom: 2rem;
+      font-weight: 400;
     }
-    .btn .arrow {
-      display: inline-block;
-      transition: transform 0.35s var(--ease);
-    }
-    .btn:hover .arrow { transform: translateX(5px); }
-    .btn:hover { transform: translateY(-2px); }
 
-    .btn-light {
-      background: var(--crema);
-      color: var(--negro);
+    .hero-title {
+      margin-bottom: 2rem;
+      position: relative;
+      display: flex;
+      justify-content: center;
     }
-    .btn-light:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.25); }
 
-    .btn-dark {
-      background: var(--negro);
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      font-weight: 300;
       color: var(--crema);
+      opacity: 0.75;
+      max-width: 550px;
+      line-height: 1.7;
+      margin-bottom: 3.5rem;
+      font-style: italic;
     }
-    .btn-dark:hover { background: var(--terracota); }
 
-    .btn-outline-dark {
-      border: 1px solid var(--negro);
-      color: var(--negro);
+    .hero-cta {
+      display: inline-block;
+      padding: 1rem 2.8rem;
+      background: var(--terracota);
+      color: var(--crema);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      border: 1px solid var(--terracota);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
     }
-    .btn-outline-dark:hover { background: var(--negro); color: var(--crema); }
+
+    .hero-cta::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--crema);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+      z-index: -1;
+    }
+
+    .hero-cta:hover {
+      color: var(--negro);
+      border-color: var(--crema);
+    }
+
+    .hero-cta:hover::after {
+      transform: scaleX(1);
+    }
 
     .hero-scroll {
       position: absolute;
-      bottom: 2rem; left: 50%;
+      bottom: 2.5rem;
+      left: 50%;
       transform: translateX(-50%);
-      z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
-      opacity: 0.55;
-      font-size: 0.65rem;
-      letter-spacing: 0.4em;
+      opacity: 0.4;
+    }
+
+    .hero-scroll span {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
     }
-    .hero-scroll .line {
-      width: 1px; height: 40px;
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
       background: linear-gradient(to bottom, var(--crema), transparent);
-      animation: drop 1.8s var(--ease) infinite;
-    }
-    @keyframes drop {
-      0% { transform: scaleY(0); transform-origin: top; }
-      50% { transform: scaleY(1); transform-origin: top; }
-      51% { transform-origin: bottom; }
-      100% { transform: scaleY(0); transform-origin: bottom; }
+      animation: scrollAnim 1.8s ease-in-out infinite;
     }
 
-    /* ═══════════ MARQUEE ═══════════ */
-    .marquee {
+    @keyframes scrollAnim {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+
+    /* ─── FLAME PARTICLES ─── */
+    .particles {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 300px;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      bottom: 0;
+      border-radius: 50% 50% 20% 80%;
+      animation: rise linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.7; }
+      80% { opacity: 0.2; }
+      100% { transform: translateY(-280px) scale(0.2) rotate(30deg); opacity: 0; }
+    }
+
+    /* ─── SECTION BASE ─── */
+    section {
+      padding: 7rem 2rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--terracota-light);
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--terracota);
+      margin: 2rem 0;
+    }
+
+    /* ─── DEFINICIÓN ─── */
+    .definicion {
+      background: var(--crema);
+      color: var(--negro);
+    }
+
+    .definicion-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .definicion-text .section-label {
+      color: var(--terracota);
+    }
+
+    .definicion-text .section-title {
+      color: var(--negro);
+    }
+
+    .definicion-text p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--gris);
+      font-weight: 300;
+    }
+
+    .definicion-quote {
       background: var(--negro);
       color: var(--crema);
-      padding: 2rem 0;
-      overflow: hidden;
-      border-top: 1px solid rgba(255,247,230,0.08);
-      border-bottom: 1px solid rgba(255,247,230,0.08);
+      padding: 3rem;
+      position: relative;
     }
 
-    .marquee-track {
-      display: flex;
-      gap: 4rem;
-      white-space: nowrap;
-      animation: scroll 40s linear infinite;
-    }
-
-    .marquee-track span {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      font-weight: 300;
-      letter-spacing: -0.01em;
-      display: inline-flex;
-      align-items: center;
-      gap: 4rem;
-    }
-    .marquee-track span::after {
-      content: '✦';
+    .definicion-quote::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 8rem;
       color: var(--terracota);
+      opacity: 0.3;
+      position: absolute;
+      top: -1.5rem;
+      left: 1.5rem;
+      line-height: 1;
+    }
+
+    .definicion-quote blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-style: italic;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .definicion-quote .quote-source {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracota-light);
+      font-family: 'Inter', sans-serif;
       font-style: normal;
-      font-size: 0.7em;
     }
 
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+    /* ─── HISTORIA ─── */
+    .historia {
+      background: var(--negro);
+      position: relative;
     }
 
-    /* ═══════════ SECTIONS ═══════════ */
-    section.block { padding: 8rem 0; position: relative; }
-    section.block-tight { padding: 5rem 0; position: relative; }
-
-    /* ═══════════ DEFINICIÓN / INTRO ═══════════ */
-    .intro {
-      background: var(--crema);
-      padding: 9rem 0 7rem;
+    .historia::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 0% 50%, rgba(106,49,24,0.18) 0%, transparent 70%);
+      pointer-events: none;
     }
 
-    .intro-inner {
+    .historia-inner {
       display: grid;
-      grid-template-columns: 1fr 1.4fr;
+      grid-template-columns: 1fr 2fr;
       gap: 5rem;
-      align-items: end;
+      align-items: start;
     }
 
-    .intro-label-col {
+    .historia-sticky {
       position: sticky;
       top: 8rem;
     }
 
-    .intro-label-col .eyebrow { margin-bottom: 1.5rem; display: block; }
-    .intro-label-col p {
-      font-size: 0.95rem;
-      color: var(--gris);
-      max-width: 28ch;
+    .historia-sticky .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
     }
 
-    .intro-title {
-      font-family: var(--serif);
-      font-size: clamp(2.4rem, 5.5vw, 4.5rem);
-      font-weight: 400;
-      line-height: 1.08;
-      letter-spacing: -0.02em;
-      color: var(--negro);
+    .historia-pasos {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
     }
 
-    .intro-title em {
-      font-style: italic;
+    .historia-paso {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .paso-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
       color: var(--terracota);
+      opacity: 0.25;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 3rem;
     }
 
-    .intro-title .alt {
-      font-family: var(--serif);
-      font-style: italic;
-      font-weight: 300;
-      color: var(--gris);
-    }
-
-    /* ═══════════ MANIFIESTO ═══════════ */
-    .manifiesto {
-      background: var(--negro);
+    .paso-content p {
+      font-size: 1rem;
+      line-height: 1.85;
       color: var(--crema);
-      position: relative;
-      overflow: hidden;
+      opacity: 0.75;
+      font-weight: 300;
     }
-    .manifiesto::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 50% at 10% 20%, rgba(190,110,75,0.25) 0%, transparent 55%),
-        radial-gradient(ellipse 50% 60% at 90% 80%, rgba(106,49,24,0.3) 0%, transparent 55%);
-      pointer-events: none;
-    }
-    .manifiesto > * { position: relative; z-index: 1; }
 
-    .manifiesto-head {
-      max-width: 800px;
-      margin: 0 0 5rem;
+    /* ─── SERVICIOS ─── */
+    .servicios {
+      background: var(--marron);
+      color: var(--crema);
     }
-    .manifiesto-head .eyebrow { color: rgba(255,247,230,0.55); margin-bottom: 1.5rem; display: block; }
-    .manifiesto-head h2 { color: var(--crema); }
-    .manifiesto-head h2 em { color: var(--terracota); }
 
-    .manifiesto-grid {
+    .servicios .section-label {
+      color: var(--crema-2);
+    }
+
+    .servicios-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: rgba(255,247,230,0.1);
-      border: 1px solid rgba(255,247,230,0.1);
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 4rem;
     }
 
-    .manifiesto-card {
-      background: var(--negro);
-      padding: 3.5rem 2.5rem;
-      transition: background 0.4s var(--ease);
-    }
-    .manifiesto-card:hover { background: #211309; }
-
-    .manifiesto-card .num {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 0.85rem;
-      color: var(--terracota);
-      letter-spacing: 0.05em;
-      margin-bottom: 1.5rem;
+    .servicio-card {
+      background: rgba(253, 247, 230, 0.05);
+      padding: 3rem 2.5rem;
+      border: 1px solid rgba(253, 247, 230, 0.12);
+      transition: all 0.4s ease;
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      position: relative;
     }
 
-    .manifiesto-card p {
-      font-family: var(--serif);
-      font-weight: 300;
-      font-size: clamp(1.3rem, 1.8vw, 1.7rem);
-      line-height: 1.35;
-      color: var(--crema);
-      letter-spacing: -0.01em;
+    .servicio-card:hover {
+      background: rgba(253, 247, 230, 0.1);
+      border-color: rgba(253, 247, 230, 0.25);
+      transform: translateY(-4px);
     }
-    .manifiesto-card p em {
-      font-style: italic;
-      color: var(--terracota);
+
+    .servicio-badge {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--crema-2);
+      background: rgba(253, 247, 230, 0.08);
+      border: 1px solid rgba(253, 247, 230, 0.18);
+      padding: 0.35rem 0.75rem;
+      border-radius: 100px;
       font-weight: 500;
     }
 
-    /* ═══════════ MÉTODO (pilares) ═══════════ */
-    .metodo { background: var(--crema-2); }
-
-    .metodo-head {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: end;
-      margin-bottom: 5rem;
-    }
-
-    .metodo-head .lead { justify-self: end; max-width: 42ch; }
-
-    .pilares {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
-
-    .pilar {
-      background: var(--crema);
-      border-radius: 24px;
-      padding: 3rem 2.4rem;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
-    }
-    .pilar:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 30px 60px -20px rgba(26,15,8,0.18);
-    }
-
-    .pilar-num {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 4.5rem;
-      font-weight: 300;
-      color: var(--terracota);
-      opacity: 0.18;
-      line-height: 1;
-      position: absolute;
-      top: 1.4rem; right: 1.6rem;
-      letter-spacing: -0.04em;
-    }
-
-    .pilar-tag {
+    .servicio-eyebrow {
       font-size: 0.7rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--terracota);
+      color: var(--crema-2);
+      opacity: 0.7;
+      margin-bottom: 1rem;
       font-weight: 500;
-      margin-bottom: 1.2rem;
     }
 
-    .pilar h3 {
-      font-family: var(--serif);
-      font-weight: 500;
-      font-size: 1.7rem;
-      letter-spacing: -0.01em;
-      line-height: 1.2;
+    .servicio-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .servicio-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
       margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .servicio-card p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      opacity: 0.8;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .servicio-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .servicio-meta span {
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      color: var(--crema-1);
+      background: rgba(253, 247, 230, 0.06);
+      border: 1px solid rgba(253, 247, 230, 0.1);
+      padding: 0.35rem 0.75rem;
+      border-radius: 100px;
+      font-weight: 400;
+    }
+
+    .servicio-link {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--crema-1);
+      text-decoration: none;
+      font-weight: 600;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(253, 247, 230, 0.15);
+      transition: color 0.3s, gap 0.3s;
+    }
+
+    .servicio-link:hover {
+      color: var(--crema-2);
+      gap: 0.85rem;
+    }
+
+    /* ─── PARA QUIÉN ─── */
+    .para-quien {
+      background: var(--crema);
       color: var(--negro);
     }
 
-    .pilar p {
-      font-size: 0.97rem;
-      line-height: 1.7;
-      color: var(--gris);
+    .para-quien .section-label {
+      color: var(--terracota);
     }
 
-    /* ═══════════ SOBRE / ABOUT ═══════════ */
-    .sobre {
-      background: var(--crema);
-      padding: 9rem 0;
+    .para-quien .section-title {
+      color: var(--negro);
     }
 
-    .sobre-inner {
+    .para-quien .divider {
+      background: var(--terracota);
+    }
+
+    .para-quien-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 5rem;
       align-items: center;
     }
 
-    .sobre-img-wrap {
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      aspect-ratio: 4/5;
-      background: var(--crema-3);
+    .reconoces {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
     }
-    .sobre-img-wrap img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.8s var(--ease);
-    }
-    .sobre-img-wrap:hover img { transform: scale(1.04); }
 
-    .sobre-img-wrap::after {
+    .reconoce-item {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+    }
+
+    .reconoce-check {
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--terracota);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+
+    .reconoce-check::after {
+      content: '✦';
+      font-size: 0.6rem;
+      color: var(--terracota);
+    }
+
+    .reconoce-item p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--gris);
+      font-weight: 300;
+    }
+
+    .para-quien-img {
+      background: var(--negro);
+      padding: 3.5rem;
+      position: relative;
+    }
+
+    .para-quien-img .big-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      color: var(--crema);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .para-quien-img .big-text span {
+      color: var(--terracota-light);
+    }
+
+    /* ─── VALORES ─── */
+    .valores {
+      background: var(--negro);
+    }
+
+    .valores-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .valores-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .valor-item {
+      padding: 2rem;
+      border: 1px solid rgba(155, 98, 73, 0.3);
+      transition: border-color 0.3s;
+    }
+
+    .valor-item:hover {
+      border-color: var(--terracota);
+    }
+
+    .valor-item h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--terracota-light);
+    }
+
+    .valor-item p {
+      font-size: 0.85rem;
+      opacity: 0.6;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .valores-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.3;
+      font-style: italic;
+    }
+
+    .valores-quote span {
+      color: var(--terracota-light);
+    }
+
+    /* ─── CTA ─── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--terracota-dark) 0%, var(--terracota) 60%, var(--marron) 100%);
+      text-align: center;
+      padding: 8rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
       content: '';
       position: absolute;
-      bottom: 1.4rem; right: 1.4rem;
-      width: 80px; height: 80px;
-      background: var(--negro);
-      border-radius: 50%;
-      background-image: url('Logo/4x/Mesa%20de%20trabajo%204@4x.png');
-      background-size: 50%;
-      background-repeat: no-repeat;
-      background-position: center;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 70% at 50% 100%, rgba(26,20,16,0.4) 0%, transparent 70%);
     }
 
-    .sobre-text h2 { margin-bottom: 2rem; }
-    .sobre-text h2 em { color: var(--terracota); }
+    .cta-submark {
+      height: 70px;
+      width: auto;
+      margin-bottom: 2rem;
+      opacity: 0.35;
+      position: relative;
+    }
 
-    .sobre-text p {
-      font-size: 1.02rem;
-      line-height: 1.75;
+    .cta-section .section-label {
+      color: rgba(253, 247, 230, 0.6);
+    }
+
+    .cta-section .section-title {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      color: var(--crema);
+      position: relative;
+    }
+
+    .cta-section p {
+      font-size: 1.1rem;
+      color: var(--crema);
+      opacity: 0.8;
+      max-width: 520px;
+      margin: 1.5rem auto 3rem;
+      line-height: 1.7;
+      font-weight: 300;
+      position: relative;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 1.1rem 3.2rem;
+      background: var(--crema);
+      color: var(--terracota-dark);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .cta-btn:hover {
+      background: var(--negro);
+      color: var(--crema);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--negro);
+      padding: 3rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(155, 98, 73, 0.2);
+    }
+
+    .footer-logo-img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    footer .footer-copy {
+      font-size: 0.8rem;
+      opacity: 0.4;
+      letter-spacing: 0.05em;
+    }
+
+    footer .footer-tagline {
+      font-size: 0.8rem;
+      color: var(--terracota-light);
+      font-style: italic;
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    /* ─── HAMBURGER MENU ─── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 200;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--crema);
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ─── TABLET (max 900px) ─── */
+    @media (max-width: 900px) {
+      nav {
+        padding: 1.2rem 1.5rem;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--negro);
+        border-left: 1px solid rgba(255,247,230,0.08);
+        padding: 6rem 2.5rem 3rem;
+        gap: 2rem;
+        transition: right 0.4s ease;
+        z-index: 150;
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .nav-links a {
+        font-size: 1.1rem;
+      }
+
+      .nav-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 140;
+      }
+
+      .nav-overlay.open {
+        display: block;
+      }
+
+      .definicion-inner,
+      .historia-inner,
+      .para-quien-inner,
+      .valores-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .servicios-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .valores-grid {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        padding: 2rem;
+      }
+    }
+
+    /* ─── MOBILE (max 600px) ─── */
+    @media (max-width: 600px) {
+      nav {
+        padding: 1rem 1.25rem;
+      }
+
+      .nav-logo-img {
+        height: 34px;
+      }
+
+      section {
+        padding: 5rem 1.5rem;
+      }
+
+      .hero {
+        padding: 5rem 1.5rem 4rem;
+        min-height: 100svh;
+      }
+
+      .hero-submark-img {
+        height: 55px;
+      }
+
+      .hero-tagline {
+        font-size: 0.68rem;
+        letter-spacing: 0.25em;
+      }
+
+      .hero-logo-img {
+        max-width: 90vw;
+      }
+
+      .hero-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .hero-cta {
+        padding: 0.9rem 2rem;
+        font-size: 0.78rem;
+      }
+
+      .section-title {
+        font-size: clamp(1.7rem, 8vw, 2.5rem);
+      }
+
+      .definicion-inner,
+      .historia-inner,
+      .para-quien-inner,
+      .valores-inner {
+        gap: 2rem;
+      }
+
+      .historia-sticky {
+        position: static;
+      }
+
+      .servicios-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .servicio-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .valores-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      .para-quien-img {
+        padding: 2rem 1.5rem;
+      }
+
+      .cta-section {
+        padding: 5rem 1.25rem;
+      }
+
+      .cta-section .section-title {
+        font-size: clamp(1.8rem, 8vw, 2.8rem);
+      }
+
+      .cta-btn {
+        padding: 0.9rem 2rem;
+        font-size: 0.78rem;
+      }
+
+      /* Taller mobile */
+      .taller-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .taller-section {
+        padding: 5rem 1.5rem;
+      }
+
+      .taller-section .container {
+        padding: 0 0.25rem;
+      }
+
+      .taller-form-wrap {
+        padding: 2rem 1.5rem;
+      }
+
+      .taller-badge {
+        font-size: 0.68rem;
+        padding: 0.4rem 0.9rem;
+      }
+
+      .taller-desc {
+        font-size: 0.97rem;
+      }
+
+      .taller-detalle {
+        font-size: 0.88rem;
+      }
+
+      .taller-form-wrap h3 {
+        font-size: 1.3rem;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 0.75rem;
+        text-align: center;
+        padding: 2rem 1.25rem;
+      }
+
+      .footer-logo-img {
+        max-width: 160px;
+      }
+    }
+
+    /* ─── BACALISTIES SCRIPT FONT ─── */
+    .script {
+      font-family: 'Bacalisties', 'Dancing Script', cursive;
+      font-style: normal;
+      color: var(--terracota);
+    }
+
+    /* ─── FADE IN ANIMATION ─── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── TALLER ─── */
+    .taller-section {
+      background: var(--crema-1);
+      color: var(--negro);
+      padding: 7rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .taller-section .section-label { color: var(--terracota); }
+    .taller-section .section-title { color: var(--negro); }
+    .taller-section .divider { background: var(--terracota); }
+
+    .taller-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .taller-info { display: flex; flex-direction: column; gap: 2rem; }
+
+    .taller-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--terracota);
+      color: var(--crema-1);
+      padding: 0.45rem 1.1rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+
+    .taller-desc {
+      font-size: 1.05rem;
+      line-height: 1.85;
       color: var(--gris);
+      font-weight: 300;
+    }
+
+    .taller-detalles {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .taller-detalle {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.95rem;
+      color: var(--negro);
+    }
+
+    .taller-detalle-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(190,110,75,0.12);
+      border: 1px solid rgba(190,110,75,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+
+    .taller-detalle strong { font-weight: 600; }
+
+    /* Formulario */
+    .taller-form-wrap {
+      background: var(--negro);
+      padding: 3rem 2.5rem;
+    }
+
+    .taller-form-wrap h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--crema-1);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-sub {
+      font-size: 0.87rem;
+      color: rgba(255,247,230,0.5);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
       margin-bottom: 1.2rem;
     }
 
-    .sobre-firma {
-      margin-top: 2.5rem;
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 1.15rem;
-      color: var(--negro);
-    }
-
-    .sobre-firma small {
-      display: block;
-      font-family: var(--sans);
-      font-style: normal;
-      font-size: 0.72rem;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--terracota);
-      margin-top: 0.4rem;
-    }
-
-    /* ═══════════ PARA QUIÉN ═══════════ */
-    .para-quien {
-      background: var(--terracota-2);
-      color: var(--crema);
-      padding: 9rem 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .para-quien::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(26,15,8,0.45) 0%, transparent 70%);
-    }
-
-    .para-quien-inner {
-      position: relative; z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .para-quien .eyebrow { color: rgba(255,247,230,0.7); margin-bottom: 1.5rem; display: block; }
-    .para-quien h2 { color: var(--crema); margin-bottom: 1.5rem; }
-    .para-quien h2 em { color: var(--crema-3); }
-
-    .para-quien-list {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .pq-item {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 1.6rem;
-      align-items: start;
-      padding: 1.6rem 0;
-      border-bottom: 1px solid rgba(255,247,230,0.18);
-    }
-    .pq-item:first-child { border-top: 1px solid rgba(255,247,230,0.18); }
-
-    .pq-num {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 0.85rem;
-      color: var(--crema-3);
-      letter-spacing: 0.05em;
-      padding-top: 0.2rem;
-    }
-
-    .pq-item p {
-      font-size: 1.02rem;
-      line-height: 1.55;
-      color: var(--crema);
-    }
-
-    /* ═══════════ CITA ═══════════ */
-    .cita {
-      background: var(--crema);
-      padding: 10rem 0;
-      text-align: center;
-    }
-
-    .cita .container { max-width: 920px; }
-
-    .cita-mark {
-      width: 56px;
-      margin: 0 auto 2.5rem;
-      opacity: 0.4;
-    }
-
-    .cita blockquote {
-      font-family: var(--serif);
-      font-weight: 300;
-      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-      font-style: italic;
-      line-height: 1.32;
-      letter-spacing: -0.01em;
-      color: var(--negro);
-    }
-    .cita blockquote .hl { color: var(--terracota); }
-
-    .cita .cite {
-      margin-top: 2.5rem;
-      font-size: 0.72rem;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--terracota);
-      font-weight: 500;
-    }
-
-    /* ═══════════ FAQ ═══════════ */
-    .faq {
-      background: var(--crema-2);
-      padding: 8rem 0;
-    }
-
-    .faq-inner {
-      display: grid;
-      grid-template-columns: 1fr 1.6fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .faq-head .eyebrow { margin-bottom: 1.5rem; display: block; }
-    .faq-head h2 em { color: var(--terracota); }
-
-    .faq-list { display: flex; flex-direction: column; }
-
-    .faq-item {
-      border-bottom: 1px solid var(--linea);
-    }
-    .faq-item:first-child { border-top: 1px solid var(--linea); }
-
-    .faq-q {
-      width: 100%;
-      text-align: left;
-      padding: 1.6rem 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 2rem;
-      font-family: var(--serif);
-      font-size: 1.2rem;
-      font-weight: 500;
-      color: var(--negro);
-      letter-spacing: -0.01em;
-      transition: color 0.3s;
-    }
-    .faq-q:hover { color: var(--terracota); }
-
-    .faq-icon {
-      width: 28px; height: 28px;
-      border: 1px solid var(--negro);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      position: relative;
-      transition: all 0.3s;
-    }
-    .faq-icon::before,
-    .faq-icon::after {
-      content: '';
-      position: absolute;
-      background: var(--negro);
-      transition: transform 0.3s var(--ease);
-    }
-    .faq-icon::before { width: 10px; height: 1.4px; }
-    .faq-icon::after { width: 1.4px; height: 10px; }
-
-    .faq-item.open .faq-icon::after { transform: scaleY(0); }
-    .faq-item.open .faq-icon {
-      background: var(--negro);
-    }
-    .faq-item.open .faq-icon::before,
-    .faq-item.open .faq-icon::after { background: var(--crema); }
-
-    .faq-a {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s var(--ease);
-    }
-    .faq-a-inner {
-      padding: 0 0 1.6rem;
-      font-size: 0.98rem;
-      line-height: 1.7;
-      color: var(--gris);
-      max-width: 64ch;
-    }
-
-    /* ═══════════ CTA FINAL ═══════════ */
-    .cta-final {
-      background: var(--negro);
-      color: var(--crema);
-      padding: 9rem 0;
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-    }
-
-    .cta-final::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 50% at 50% 100%, rgba(190,110,75,0.4) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 40% at 50% 0%, rgba(106,49,24,0.3) 0%, transparent 60%);
-    }
-
-    .cta-final .container { position: relative; z-index: 1; max-width: 780px; }
-
-    .cta-final .eyebrow { color: var(--terracota); margin-bottom: 1.8rem; display: block; }
-
-    .cta-final h2 {
-      font-family: var(--serif);
-      font-weight: 400;
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      line-height: 1.02;
-      letter-spacing: -0.02em;
-      color: var(--crema);
-      margin-bottom: 1.5rem;
-    }
-    .cta-final h2 em { font-style: italic; color: var(--terracota); }
-
-    .cta-final p {
-      color: rgba(255,247,230,0.75);
-      font-size: 1.1rem;
-      max-width: 480px;
-      margin: 0 auto 3rem;
-      line-height: 1.65;
-    }
-
-    .cta-final .btn {
-      background: var(--crema);
-      color: var(--negro);
-    }
-    .cta-final .btn:hover { background: var(--terracota); color: var(--crema); }
-
-    /* ═══════════ FOOTER ═══════════ */
-    footer.site {
-      background: var(--negro);
-      color: var(--crema);
-      padding: 5rem 0 2rem;
-      border-top: 1px solid rgba(255,247,230,0.08);
-    }
-
-    .footer-top {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      gap: 4rem;
-      padding-bottom: 4rem;
-      border-bottom: 1px solid rgba(255,247,230,0.1);
-    }
-
-    .footer-brand-mark { height: 44px; opacity: 0.95; margin-bottom: 1.5rem; }
-    .footer-tag {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 1.1rem;
-      color: var(--terracota);
-      margin-bottom: 1rem;
-    }
-    .footer-brand p {
-      font-size: 0.9rem;
-      color: rgba(255,247,230,0.6);
-      max-width: 32ch;
-      line-height: 1.6;
-    }
-
-    .footer-col h4 {
-      font-size: 0.7rem;
-      letter-spacing: 0.32em;
+    .form-group label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: rgba(255,247,230,0.55);
       font-weight: 500;
-      margin-bottom: 1.4rem;
     }
 
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
-    .footer-col a {
-      font-size: 0.92rem;
-      color: var(--crema);
-      opacity: 0.78;
-      transition: opacity 0.3s, color 0.3s;
+    .form-group input {
+      background: rgba(255,247,230,0.06);
+      border: 1px solid rgba(255,247,230,0.13);
+      color: var(--crema-1);
+      padding: 0.85rem 1rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.3s;
+      width: 100%;
     }
-    .footer-col a:hover { opacity: 1; color: var(--terracota); }
 
-    .footer-bottom {
+    .form-group input::placeholder { color: rgba(255,247,230,0.25); }
+    .form-group input:focus { border-color: var(--terracota); }
+
+    .form-check {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 2rem;
-      font-size: 0.78rem;
-      color: rgba(255,247,230,0.45);
-      letter-spacing: 0.05em;
+      align-items: flex-start;
+      gap: 0.85rem;
+      margin-bottom: 1.75rem;
+      cursor: pointer;
     }
 
-    /* ═══════════ ANIMATIONS ═══════════ */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 1s var(--ease), transform 1s var(--ease);
-    }
-    .reveal.in { opacity: 1; transform: none; }
-
-    .reveal-stagger > * {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
-    }
-    .reveal-stagger.in > *:nth-child(1) { transition-delay: 0s; opacity: 1; transform: none; }
-    .reveal-stagger.in > *:nth-child(2) { transition-delay: 0.1s; opacity: 1; transform: none; }
-    .reveal-stagger.in > *:nth-child(3) { transition-delay: 0.2s; opacity: 1; transform: none; }
-    .reveal-stagger.in > *:nth-child(4) { transition-delay: 0.3s; opacity: 1; transform: none; }
-    .reveal-stagger.in > *:nth-child(5) { transition-delay: 0.4s; opacity: 1; transform: none; }
-    .reveal-stagger.in > *:nth-child(6) { transition-delay: 0.5s; opacity: 1; transform: none; }
-
-    /* ═══════════ RESPONSIVE ═══════════ */
-    @media (max-width: 1000px) {
-      .intro-inner,
-      .metodo-head,
-      .sobre-inner,
-      .para-quien-inner,
-      .faq-inner { grid-template-columns: 1fr; gap: 3rem; }
-
-      .intro-label-col { position: static; }
-      .metodo-head .lead { justify-self: start; }
-
-      .manifiesto-grid,
-      .pilares { grid-template-columns: 1fr; gap: 1rem; }
-
-      .manifiesto-grid { gap: 1px; }
-
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-      .footer-brand { grid-column: 1 / -1; }
+    .form-check input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      border: 1px solid rgba(255,247,230,0.3);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      margin-top: 2px;
     }
 
-    @media (max-width: 760px) {
-      nav.site { padding: 1rem 1.2rem; }
-      nav.site.scrolled { padding: 0.75rem 1.2rem; }
+    .form-check input[type="checkbox"]:checked {
+      background: var(--terracota);
+      border-color: var(--terracota);
+    }
 
-      .nav-hamburger { display: flex; z-index: 200; }
-      .nav-links {
-        position: fixed;
-        top: 0; right: -100%;
-        flex-direction: column;
-        align-items: flex-start;
-        width: 80%; max-width: 320px;
-        height: 100vh;
-        background: var(--crema);
-        padding: 5.5rem 2rem 2rem;
-        gap: 1.5rem;
-        transition: right 0.4s var(--ease);
-        z-index: 150;
-        box-shadow: -10px 0 40px rgba(26,15,8,0.12);
-      }
-      .nav-links.open { right: 0; }
-      .nav-links a { font-size: 1.05rem; }
+    .form-check input[type="checkbox"]:checked::after {
+      content: '✓';
+      color: var(--crema-1);
+      font-size: 0.72rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
 
-      .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(26,15,8,0.4); z-index: 140; }
-      .nav-overlay.open { display: block; }
+    .form-check-label {
+      font-size: 0.85rem;
+      color: rgba(255,247,230,0.6);
+      line-height: 1.65;
+      font-weight: 300;
+    }
 
-      section.block { padding: 5rem 0; }
-      .intro { padding: 6rem 0 4rem; }
-      .sobre, .para-quien, .cta-final { padding: 5rem 0; }
-      .cita { padding: 6rem 0; }
-      .faq { padding: 5rem 0; }
+    .form-submit {
+      width: 100%;
+      background: var(--terracota);
+      color: var(--crema-1);
+      border: none;
+      padding: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
 
-      .hero {
-        padding: 6rem 1.2rem 3.5rem;
-        min-height: 100svh;
-        background-position: center 35%;
-      }
-      .hero-claim { font-size: 0.98rem; margin-bottom: 2rem; }
+    .form-submit:hover {
+      background: var(--terracota-dark);
+      transform: translateY(-2px);
+    }
 
-      .marquee-track span { gap: 2.5rem; font-size: 1.3rem; }
-      .marquee-track { gap: 2.5rem; }
-      .marquee { padding: 1.4rem 0; }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 0 1rem;
+      color: var(--crema-1);
+    }
 
-      .manifiesto-card { padding: 2.4rem 1.8rem; }
-      .pilar { padding: 2.5rem 1.8rem; }
-      .pilar-num { font-size: 3.5rem; }
+    .form-success .success-icon { font-size: 2.5rem; margin-bottom: 1rem; }
 
-      .footer-top { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; gap: 1rem; }
+    .form-success h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
 
-      .container { padding: 0 1.2rem; }
+    .form-success p { font-size: 0.88rem; opacity: 0.55; font-weight: 300; }
+
+    @media (max-width: 768px) {
+      .taller-inner { grid-template-columns: 1fr; gap: 3rem; }
     }
   </style>
 </head>
@@ -986,157 +1228,155 @@
 
   <!-- NAV -->
   <div class="nav-overlay" id="navOverlay" onclick="closeMenu()"></div>
-  <nav class="site" id="nav">
-    <a href="#" class="nav-logo" aria-label="Ignisencia">
-      <img src="Logo/4x/Mesa%20de%20trabajo%202%20copia%203%404x.png" alt="" class="nav-logo-mark" />
+  <nav>
+    <a href="#" class="nav-logo">
+      <img src="Logo/4x/Mesa%20de%20trabajo%202%20copia%203%404x.png" alt="Ignisencia" class="nav-logo-img" />
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#metodo">Método</a></li>
-      <li><a href="#sobre">Sobre Chari</a></li>
+      <li><a href="#definicion">La idea</a></li>
+      <li><a href="#servicios">Servicios</a></li>
       <li><a href="#para-quien">Para quién</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#contacto" class="nav-cta">Empezar</a></li>
+      <li><a href="neuromovimiento.html" style="color: var(--terracota); font-weight: 500;">Neuromovimiento</a></li>
+      <li><a href="taller.html">Taller</a></li>
+      <li><a href="#contacto">Contacto</a></li>
     </ul>
     <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
-      <span></span><span></span><span></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
   </nav>
 
   <!-- HERO -->
-  <section class="hero" aria-label="Ignisencia — Estado de transformación">
-    <h1 class="visually-hidden">Ignisencia — Estado de transformación</h1>
-    <p class="hero-claim">
-      <strong>Neurociencia + movimiento</strong><br>
-      para activar tu creatividad<br>
-      y capacidad de adaptación.
+  <section class="hero">
+    <div class="particles" id="particles"></div>
+    <div class="hero-submark fade-in">
+      <img src="Logo/2x/Mesa%20de%20trabajo%204@2x.png" alt="" class="hero-submark-img" />
+    </div>
+    <p class="hero-tagline fade-in">Estado de transformación</p>
+    <h1 class="hero-title fade-in">
+      <img src="Logo/wordmark-only.png" alt="Ignisencia" class="hero-logo-img" />
+    </h1>
+    <p class="hero-subtitle fade-in">
+      Cuando te enciendes por dentro,<br>
+      todo lo demás empieza a tener sentido.
     </p>
-    <a href="#contacto" class="btn btn-light">
-      Encuentra tu autenticidad
-      <span class="arrow">→</span>
-    </a>
+    <a href="#servicios" class="hero-cta fade-in">Encuentra tu fuego</a>
+
     <div class="hero-scroll">
-      <span>Explora</span>
-      <span class="line"></span>
+      <span>Explorar</span>
+      <div class="scroll-line"></div>
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>Ignis · fuego</span>
-      <span>Sentir el cambio</span>
-      <span>Activar estados</span>
-      <span>Habitar el proceso</span>
-      <span>Punto de ignición</span>
-      <span>Ignis · fuego</span>
-      <span>Sentir el cambio</span>
-      <span>Activar estados</span>
-      <span>Habitar el proceso</span>
-      <span>Punto de ignición</span>
-    </div>
-  </div>
-
-  <!-- INTRO / DEFINICIÓN -->
-  <section class="intro">
+  <!-- DEFINICIÓN -->
+  <section class="definicion" id="definicion">
     <div class="container">
-      <div class="intro-inner">
-        <div class="intro-label-col reveal">
-          <span class="eyebrow dot">Del latín</span>
-          <p><em>Ignis</em> (fuego) + <em>scencia</em> (estado del ser).</p>
-        </div>
-        <h2 class="intro-title reveal">
-          El estado interno donde<br>
-          el <em>fuego innato</em> despierta.<br>
-          <span class="alt">No se enseña, no se fuerza —<br>se permite.</span>
-        </h2>
-      </div>
-    </div>
-  </section>
-
-  <!-- MANIFIESTO -->
-  <section class="manifiesto block" id="manifiesto">
-    <div class="container">
-      <div class="manifiesto-head reveal">
-        <span class="eyebrow dot">Manifiesto</span>
-        <h2 class="display">Una práctica que <em>se vive,</em><br>no se piensa.</h2>
-      </div>
-      <div class="manifiesto-grid reveal-stagger">
-        <div class="manifiesto-card">
-          <p class="num">01</p>
-          <p>No solo pensamos<br>el cambio,<br><em>lo sentimos.</em></p>
-        </div>
-        <div class="manifiesto-card">
-          <p class="num">02</p>
-          <p>No solo buscamos<br>respuestas,<br><em>activamos estados.</em></p>
-        </div>
-        <div class="manifiesto-card">
-          <p class="num">03</p>
-          <p>No solo entendemos<br>procesos,<br><em>los habitamos.</em></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MÉTODO -->
-  <section class="metodo block" id="metodo">
-    <div class="container">
-      <div class="metodo-head">
-        <div class="reveal">
-          <span class="eyebrow dot">El método</span>
-          <h2 class="display" style="margin-top:1.5rem">Tres caminos,<br>un mismo <em>punto<br>de ignición.</em></h2>
-        </div>
-        <p class="lead reveal">
-          La creatividad no es un proceso mental: es un proceso neurobiológico
-          distribuido en todo tu cuerpo. Por eso integramos lo que la mayoría separa.
-        </p>
-      </div>
-
-      <div class="pilares reveal-stagger">
-        <article class="pilar">
-          <span class="pilar-num">01</span>
-          <p class="pilar-tag">Mente</p>
-          <h3>Neurociencia<br>aplicada</h3>
-          <p>Activamos la Red Neuronal por Defecto y el pensamiento divergente para abrir asociaciones que antes parecían inconexas.</p>
-        </article>
-        <article class="pilar">
-          <span class="pilar-num">02</span>
-          <p class="pilar-tag">Cuerpo</p>
-          <h3>Movimiento<br>consciente</h3>
-          <p>El cuerpo no acompaña al cambio: lo provoca. Trabajamos desde la sensación, la respiración y el gesto.</p>
-        </article>
-        <article class="pilar">
-          <span class="pilar-num">03</span>
-          <p class="pilar-tag">Propósito</p>
-          <h3>Coaching<br>ejecutivo</h3>
-          <p>Acompañamiento estratégico para llevar lo que descubres a decisiones concretas en tu vida y tu liderazgo.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOBRE / ABOUT -->
-  <section class="sobre" id="sobre">
-    <div class="container">
-      <div class="sobre-inner">
-        <div class="sobre-img-wrap reveal">
-          <img src="conoceme.png" alt="Chari Reynoso — fundadora de Ignisencia" loading="lazy" />
-        </div>
-        <div class="sobre-text reveal">
-          <span class="eyebrow dot">Hola, soy Chari</span>
-          <h2 class="display" style="margin-top:1.5rem">Creé Ignisencia<br>desde mi propio<br><em>punto de ignición.</em></h2>
-          <p style="margin-top:2rem">
-            Para los demás tenía "todo": un buen trabajo, una relación estable, familia y
-            salud. Pero por dentro estaba apagada, viviendo una vida que no me gustaba.
-          </p>
+      <div class="definicion-inner fade-in">
+        <div class="definicion-text">
+          <p class="section-label">Del latín</p>
+          <h2 class="section-title">Ignis (fuego)<br>+ scencia (estado del ser)</h2>
+          <div class="divider"></div>
           <p>
-            Hasta que entendí: no quería ser útil, quería ser libre. Y esa libertad
-            no venía de afuera, venía de entrar en mi propio punto de combustión interior.
+            Estado interno de transformación en el que el fuego innato despierta.
+            No se enseña ni se fuerza — <strong>se permite.</strong>
           </p>
-          <p class="sobre-firma">
-            "Mi misión es facilitar ese mismo encuentro en ti."
-            <small>Chari Reynoso · Fundadora</small>
+          <br>
+          <p>
+            Así como el punto de ignición es la temperatura mínima en la que una
+            sustancia emite vapores suficientes para encenderse, Igniscencia es
+            el momento en que tú encuentras tu propio punto de combustión interior.
           </p>
         </div>
+        <div class="definicion-quote">
+          <blockquote>
+            "No se trata de dejar una vida para tener otra, se trata de
+            encenderte con la vida, pero desde adentro."
+          </blockquote>
+          <p class="quote-source">Fundadora · Igniscencia</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTORIA -->
+  <section class="historia" id="historia">
+    <div class="container">
+      <div class="historia-inner">
+        <div class="historia-sticky fade-in">
+          <p class="section-label">Nuestro origen</p>
+          <h2 class="section-title">Por qué<br>existe<br>Igniscencia</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="historia-pasos fade-in">
+          <div class="historia-paso">
+            <span class="paso-num">01</span>
+            <div class="paso-content">
+              <p>Para los demás tenía "todo": un buen trabajo, una relación estable, familia con salud, amigos. Pero en el fondo, estaba apagada, viviendo una vida que no me gustaba.</p>
+            </div>
+          </div>
+          <div class="historia-paso">
+            <span class="paso-num">02</span>
+            <div class="paso-content">
+              <p>El miedo a aceptar mis cárceles mentales me tenía atrapada en una vida "segura" y "conocida", cumpliendo con los demás y alcanzando metas que no eran mías.</p>
+            </div>
+          </div>
+          <div class="historia-paso">
+            <span class="paso-num">03</span>
+            <div class="paso-content">
+              <p>Hasta que entendí: yo no quería ser útil, quería ser libre. Y aprendí que esa libertad no viene de afuera, sino de entrar en tu propio punto de ignición.</p>
+            </div>
+          </div>
+          <div class="historia-paso">
+            <span class="paso-num">04</span>
+            <div class="paso-content">
+              <p>Conectar con mis emociones y con mi cuerpo me permitió tener una vida llena de propósito. Eso es lo que quiero facilitar en este espacio.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="servicios" id="servicios">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">Lo que ofrecemos</p>
+        <h2 class="section-title">Dos formas de<br>encenderte.</h2>
+      </div>
+      <div class="servicios-grid fade-in">
+
+        <!-- Sesión 1 a 1 -->
+        <a href="neuromovimiento.html" class="servicio-card" style="text-decoration: none; color: inherit;">
+          <span class="servicio-badge">Reservas abiertas</span>
+          <p class="servicio-eyebrow">Sesión 1 a 1</p>
+          <div class="servicio-icon">✦</div>
+          <h3>Sesión de<br>Neuromovimiento</h3>
+          <p>Virtual, 60 minutos. Neurociencia + movimiento corporal para salir del piloto automático, regular tu sistema nervioso y decidir desde la claridad.</p>
+          <div class="servicio-meta">
+            <span>💻 Virtual</span>
+            <span>⏱ 60 min</span>
+            <span>💸 S/ 150</span>
+          </div>
+          <span class="servicio-link">Reservar mi sesión →</span>
+        </a>
+
+        <!-- Taller -->
+        <a href="taller.html" class="servicio-card" style="text-decoration: none; color: inherit;">
+          <span class="servicio-badge">Próximamente</span>
+          <p class="servicio-eyebrow">Experiencia grupal</p>
+          <div class="servicio-icon">🔥</div>
+          <h3>Taller de<br>Neuromovimiento</h3>
+          <p>Una experiencia grupal en vivo para entrar en estado de ignición. Cupos limitados. Déjanos tus datos y avísamos en cuanto abramos inscripciones.</p>
+          <div class="servicio-meta">
+            <span>🌿 Presencial</span>
+            <span>👥 Grupal</span>
+            <span>📅 Por confirmar</span>
+          </div>
+          <span class="servicio-link">Apartar mi cupo →</span>
+        </a>
+
       </div>
     </div>
   </section>
@@ -1145,192 +1385,146 @@
   <section class="para-quien" id="para-quien">
     <div class="container">
       <div class="para-quien-inner">
-        <div class="reveal">
-          <span class="eyebrow dot">¿Es para ti?</span>
-          <h2 class="display">Para quien<br>se hace las<br><em>preguntas.</em></h2>
-          <p class="lead" style="color:rgba(255,247,230,0.78); margin-top:2rem">
-            Profesionales con experiencia, estabilidad y todo "en orden" — pero con la
-            sensación de que algo aún no se ha encendido.
+        <div class="fade-in">
+          <p class="section-label">¿Es para mí?</p>
+          <h2 class="section-title">Para quien<br>se hace las preguntas</h2>
+          <div class="divider"></div>
+          <div class="reconoces">
+            <div class="reconoce-item">
+              <div class="reconoce-check"></div>
+              <p>Tienes estabilidad laboral, buenas relaciones y salud, pero algo falta.</p>
+            </div>
+            <div class="reconoce-item">
+              <div class="reconoce-check"></div>
+              <p>Sientes que corres detrás de objetivos, pero nunca es suficiente.</p>
+            </div>
+            <div class="reconoce-item">
+              <div class="reconoce-check"></div>
+              <p>No sabes qué te apasiona o no encuentras satisfacción en tu vida.</p>
+            </div>
+            <div class="reconoce-item">
+              <div class="reconoce-check"></div>
+              <p>Te preguntas: ¿Para qué hago lo que hago? ¿Cómo me siento en paz?</p>
+            </div>
+            <div class="reconoce-item">
+              <div class="reconoce-check"></div>
+              <p>Estás cansado/a de tu rutina y sientes que algo tiene que cambiar.</p>
+            </div>
+          </div>
+        </div>
+        <div class="para-quien-img fade-in">
+          <p class="big-text">
+            Si vives <span>apagado/a</span> con una vida que "debería" hacerte feliz,<br><br>
+            Ignisencia es tu <span>punto de ignición.</span>
           </p>
         </div>
-        <div class="para-quien-list reveal-stagger">
-          <div class="pq-item">
-            <span class="pq-num">01</span>
-            <p>Tienes una vida que "debería" hacerte feliz, pero algo falta.</p>
-          </div>
-          <div class="pq-item">
-            <span class="pq-num">02</span>
-            <p>Corres detrás de objetivos, y nunca es suficiente.</p>
-          </div>
-          <div class="pq-item">
-            <span class="pq-num">03</span>
-            <p>Quieres reconectar con tu creatividad y tu propósito.</p>
-          </div>
-          <div class="pq-item">
-            <span class="pq-num">04</span>
-            <p>Buscas un cambio que se sienta en el cuerpo, no solo en la cabeza.</p>
-          </div>
-          <div class="pq-item">
-            <span class="pq-num">05</span>
-            <p>Estás listx para liderar tu vida desde adentro, no desde el deber.</p>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- CITA -->
-  <section class="cita">
-    <div class="container reveal">
-      <img src="Logo/2x/Mesa%20de%20trabajo%204@2x.png" alt="" class="cita-mark" />
-      <blockquote>
-        "No se trata de dejar una vida para tener otra.<br>
-        Se trata de <span class="hl">encenderte con la vida,</span><br>
-        pero desde adentro."
-      </blockquote>
-      <p class="cite">— Chari Reynoso · Fundadora</p>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="faq" id="faq">
+  <!-- VALORES -->
+  <section class="valores" id="valores">
     <div class="container">
-      <div class="faq-inner">
-        <div class="faq-head reveal">
-          <span class="eyebrow dot">Preguntas frecuentes</span>
-          <h2 class="display" style="margin-top:1.5rem">Lo que <em>nos preguntan</em><br>antes de empezar.</h2>
+      <div class="valores-inner">
+        <div class="fade-in">
+          <p class="section-label">Nuestra esencia</p>
+          <p class="valores-quote">
+            Un espacio de <span>calidez,</span><br>
+            <span>atrevimiento</span><br>
+            e <span>inspiración.</span>
+          </p>
         </div>
-        <div class="faq-list reveal">
-          <div class="faq-item">
-            <button class="faq-q" type="button">
-              <span>¿Qué es exactamente Ignisencia?</span>
-              <span class="faq-icon" aria-hidden="true"></span>
-            </button>
-            <div class="faq-a">
-              <div class="faq-a-inner">
-                Una metodología propia que integra neurociencia aplicada, movimiento consciente y coaching ejecutivo. No es terapia, no es solo coaching, no es solo body work. Es un proceso para que tu cambio se piense, se sienta y se sostenga en el cuerpo.
-              </div>
-            </div>
+        <div class="valores-grid fade-in">
+          <div class="valor-item">
+            <h4>Calidez</h4>
+            <p>Un espacio amoroso donde todo lo que llegas a sentir es bienvenido.</p>
           </div>
-          <div class="faq-item">
-            <button class="faq-q" type="button">
-              <span>¿Necesito tener experiencia en movimiento o meditación?</span>
-              <span class="faq-icon" aria-hidden="true"></span>
-            </button>
-            <div class="faq-a">
-              <div class="faq-a-inner">
-                No. Los procesos están diseñados para personas que viven en su cabeza y necesitan reconectar con el cuerpo. Cada práctica es accesible, sin pre-requisitos.
-              </div>
-            </div>
+          <div class="valor-item">
+            <h4>Atrevimiento</h4>
+            <p>La invitación constante a ir más allá de lo conocido y lo seguro.</p>
           </div>
-          <div class="faq-item">
-            <button class="faq-q" type="button">
-              <span>¿En qué formato trabajamos?</span>
-              <span class="faq-icon" aria-hidden="true"></span>
-            </button>
-            <div class="faq-a">
-              <div class="faq-a-inner">
-                Sesiones individuales 1:1, procesos grupales y talleres experienciales. Cuéntame dónde estás y diseñamos el espacio que mejor te acompañe.
-              </div>
-            </div>
+          <div class="valor-item">
+            <h4>Inspiración</h4>
+            <p>Encenderte no solo a vos, sino irradiar esa luz a quienes te rodean.</p>
           </div>
-          <div class="faq-item">
-            <button class="faq-q" type="button">
-              <span>¿Cómo empiezo?</span>
-              <span class="faq-icon" aria-hidden="true"></span>
-            </button>
-            <div class="faq-a">
-              <div class="faq-a-inner">
-                Con una conversación inicial sin compromiso. Me cuentas dónde estás y te muestro cómo podríamos trabajar. Escríbeme por WhatsApp al <a href="https://wa.me/51993500262" target="_blank" rel="noopener" style="color:var(--terracota); text-decoration:underline;">+51 993 500 262</a>.
-              </div>
-            </div>
+          <div class="valor-item">
+            <h4>Propósito</h4>
+            <p>Habilitar un fuego interior sostenido y constante que conecte con la vida.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA FINAL -->
-  <section class="cta-final" id="contacto">
-    <div class="container reveal">
-      <span class="eyebrow">El primer paso</span>
-      <h2>¿Lista/o para<br><em>encenderte?</em></h2>
-      <p>El fuego ya está en ti. Solo necesita el espacio para aparecer.</p>
-      <a href="https://wa.me/51993500262" target="_blank" rel="noopener" class="btn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right:-0.2rem">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/>
-        </svg>
-        Escríbeme por WhatsApp
-        <span class="arrow">→</span>
-      </a>
+  <!-- CTA -->
+  <section class="cta-section" id="contacto">
+    <div class="container">
+      <img src="Logo/1x/Mesa%20de%20trabajo%204.png" alt="" class="cta-submark" />
+      <p class="section-label">El primer paso</p>
+      <h2 class="section-title fade-in">¿Lista/o para<br>encenderte?</h2>
+      <p class="fade-in">El fuego ya está en ti. Solo necesita el espacio para aparecer. Reserva tu sesión 1 a 1 o aparta tu cupo para el próximo taller.</p>
+      <div class="fade-in" style="display: inline-flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 0.5rem;">
+        <a href="neuromovimiento.html" class="cta-btn">Reservar sesión</a>
+        <a href="taller.html" class="cta-btn" style="background: transparent; color: var(--crema); border: 1px solid var(--crema);">Apartar cupo taller</a>
+      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="site">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <img src="Logo/4x/Mesa%20de%20trabajo%204%20copia%204%404x.png" alt="Ignisencia" class="footer-brand-mark" />
-          <p class="footer-tag">Estado de transformación.</p>
-          <p>Neurociencia + movimiento + coaching para encontrar tu punto de ignición.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Navega</h4>
-          <ul>
-            <li><a href="#manifiesto">Manifiesto</a></li>
-            <li><a href="#metodo">Método</a></li>
-            <li><a href="#sobre">Sobre Chari</a></li>
-            <li><a href="#para-quien">Para quién</a></li>
-            <li><a href="#faq">FAQ</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Conecta</h4>
-          <ul>
-            <li><a href="https://wa.me/51993500262" target="_blank" rel="noopener">WhatsApp · +51 993 500 262</a></li>
-            <li><a href="https://instagram.com/ignisencia" target="_blank" rel="noopener">Instagram</a></li>
-            <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Ignisencia. Todos los derechos reservados.</span>
-        <span>Hecho con fuego desde LATAM.</span>
-      </div>
-    </div>
+  <footer>
+    <img src="Logo/4x/Mesa%20de%20trabajo%204%20copia%204%404x.png" alt="Ignisencia" class="footer-logo-img" />
+    <span class="footer-tagline">Estado de transformación</span>
+    <span class="footer-copy">© 2026 Igniscencia</span>
   </footer>
 
   <script>
-    // ── Nav scrolled state ──
-    const nav = document.getElementById('nav');
-    const onScroll = () => {
-      nav.classList.toggle('scrolled', window.scrollY > 40);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    // Particle system
+    function createParticles() {
+      const container = document.getElementById('particles');
+      const colors = ['rgba(196,137,106,0.6)', 'rgba(155,98,73,0.7)', 'rgba(253,247,230,0.3)'];
+      for (let i = 0; i < 18; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 14 + 4;
+        const left = Math.random() * 280 + 10;
+        const delay = Math.random() * 4;
+        const duration = Math.random() * 3 + 3;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        p.style.cssText = `
+          width: ${size}px;
+          height: ${size}px;
+          left: ${left}px;
+          background: ${color};
+          animation-delay: ${delay}s;
+          animation-duration: ${duration}s;
+        `;
+        container.appendChild(p);
+      }
+    }
+    createParticles();
 
-    // ── Reveal on scroll ──
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          io.unobserve(e.target);
+    // Scroll fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
+    }, { threshold: 0.15 });
 
-    // ── Hamburger ──
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Hamburger menu
     function toggleMenu() {
-      const h = document.getElementById('hamburger');
-      const l = document.getElementById('navLinks');
-      const o = document.getElementById('navOverlay');
-      h.classList.toggle('open');
-      l.classList.toggle('open');
-      o.classList.toggle('open');
-      document.body.style.overflow = l.classList.contains('open') ? 'hidden' : '';
+      const hamburger = document.getElementById('hamburger');
+      const navLinks  = document.getElementById('navLinks');
+      const overlay   = document.getElementById('navOverlay');
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+      overlay.classList.toggle('open');
+      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
     }
+
     function closeMenu() {
       document.getElementById('hamburger').classList.remove('open');
       document.getElementById('navLinks').classList.remove('open');
@@ -1338,6 +1532,7 @@
       document.body.style.overflow = '';
     }
 
+    // Nav links: close menu first, then scroll to section
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
@@ -1345,29 +1540,46 @@
           e.preventDefault();
           closeMenu();
           setTimeout(() => {
-            const t = document.querySelector(href);
-            if (t) t.scrollIntoView({ behavior: 'smooth' });
-          }, 320);
+            const target = document.querySelector(href);
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+          }, 350);
         }
       });
     });
 
-    // ── FAQ accordion ──
-    document.querySelectorAll('.faq-item').forEach(item => {
-      const q = item.querySelector('.faq-q');
-      const a = item.querySelector('.faq-a');
-      q.addEventListener('click', () => {
-        const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item.open').forEach(o => {
-          o.classList.remove('open');
-          o.querySelector('.faq-a').style.maxHeight = '0px';
-        });
-        if (!isOpen) {
-          item.classList.add('open');
-          a.style.maxHeight = a.scrollHeight + 'px';
-        }
+    // Taller form submission → Google Sheets
+    function submitTaller(e) {
+      e.preventDefault();
+      const form = document.getElementById('tallerForm');
+      const btn = form.querySelector('.form-submit');
+      const success = document.getElementById('formSuccess');
+
+      const data = {
+        nombre:  document.getElementById('taller-nombre').value,
+        celular: document.getElementById('taller-celular').value,
+        email:   document.getElementById('taller-email').value,
+        info:    document.getElementById('taller-info').checked
+      };
+
+      btn.textContent = 'Enviando...';
+      btn.disabled = true;
+
+      fetch('https://script.google.com/macros/s/AKfycby_lcv92cf26xtF3ccxVWBs_P3lxlnGMUxb_9_LD1eRvZOjkCaGLDjQTOYpzgldrlTr/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(() => {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      })
+      .catch(() => {
+        btn.textContent = 'Quiero participar ✦';
+        btn.disabled = false;
+        alert('Hubo un error al enviar. Por favor intenta de nuevo.');
       });
-    });
+    }
   </script>
 </body>
 </html>
