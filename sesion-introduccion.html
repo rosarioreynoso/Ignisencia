@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sesión de Introducción — Ignisencia</title>
+  <meta name="description" content="Agenda 30 minutos gratis con Rosario Reynoso para conocer las sesiones de Neuromovimiento. Liderazgo humano en entornos inciertos." />
+  <link rel="icon" type="image/png" href="Logo/Foto%20de%20Perfil.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/bacalisties');
+
+    :root {
+      --crema-1:        #fff7e6;
+      --crema-2:        #ebd7cd;
+      --terracota:      #be6e4b;
+      --terracota-dark: #9b6149;
+      --marron:         #6a3118;
+      --negro:          #1a0f08;
+      --gris:           #5a4035;
+      --crema:          var(--crema-1);
+
+      /* Gradiente de marca: dorado → naranja → púrpura */
+      --grad-yellow:    #e8a730;
+      --grad-orange:    #d34a2c;
+      --grad-red:       #a93851;
+      --grad-purple:    #4d2870;
+      --grad-purple-dk: #2a1640;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--negro);
+      color: var(--crema);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(26,15,8,0.97), transparent);
+    }
+
+    .nav-logo { text-decoration: none; display: flex; align-items: center; }
+    .nav-logo-img { height: 42px; width: auto; object-fit: contain; border-radius: 6px; }
+
+    .nav-back {
+      color: var(--crema);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: opacity 0.2s;
+    }
+
+    .nav-back:hover { opacity: 1; }
+
+    /* ─── HERO ─── */
+    .intro-hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 4rem 5rem;
+      background:
+        radial-gradient(ellipse 65% 55% at 85% 5%, var(--grad-yellow) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 50% at 15% 10%, var(--grad-orange) 0%, transparent 55%),
+        radial-gradient(ellipse 80% 70% at 50% 100%, var(--grad-purple) 0%, transparent 65%),
+        linear-gradient(180deg, var(--grad-orange) 0%, var(--grad-red) 45%, var(--grad-purple) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 85%, rgba(42,22,64,0.5) 0%, transparent 45%),
+        radial-gradient(circle at 75% 25%, rgba(255,235,180,0.18) 0%, transparent 35%);
+      pointer-events: none;
+    }
+
+    .intro-hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--grad-yellow);
+      margin-bottom: 1.25rem;
+      font-weight: 600;
+      text-shadow: 0 1px 12px rgba(0,0,0,0.4);
+    }
+
+    .intro-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.3rem, 6vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--crema);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+      text-shadow: 0 2px 30px rgba(42,22,64,0.4);
+    }
+
+    .intro-hero h1 em {
+      font-style: italic;
+      color: var(--grad-yellow);
+    }
+
+    .intro-hero .subtitle {
+      font-size: clamp(1rem, 1.6vw, 1.2rem);
+      line-height: 1.7;
+      color: var(--crema);
+      opacity: 0.85;
+      font-weight: 300;
+      margin-bottom: 2rem;
+      max-width: 580px;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,247,230,0.08);
+      border: 1px solid rgba(255,247,230,0.2);
+      color: var(--crema-1);
+      padding: 0.5rem 1.1rem;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-pill.accent {
+      background: var(--terracota);
+      border-color: var(--terracota);
+      font-weight: 600;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1.1rem 2.4rem;
+      background: var(--crema);
+      color: var(--grad-purple);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      margin-top: 2.5rem;
+      box-shadow: 0 8px 24px rgba(42,22,64,0.35);
+    }
+
+    .hero-cta:hover {
+      background: var(--grad-yellow);
+      color: var(--grad-purple-dk);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(42,22,64,0.45);
+    }
+
+    .hero-card {
+      background: rgba(26,15,30,0.45);
+      border: 1px solid rgba(255,235,180,0.22);
+      padding: 2.5rem;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      position: relative;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 60px;
+      height: 60px;
+      border-top: 2px solid var(--grad-yellow);
+      border-left: 2px solid var(--grad-yellow);
+    }
+
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 60px;
+      height: 60px;
+      border-bottom: 2px solid var(--grad-yellow);
+      border-right: 2px solid var(--grad-yellow);
+    }
+
+    .hero-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--crema-1);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-card .meta-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid rgba(253,247,230,0.1);
+      font-size: 0.9rem;
+      color: var(--crema-1);
+    }
+
+    .hero-card .meta-row:last-child { border-bottom: none; }
+
+    .hero-card .meta-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(190,110,75,0.18);
+      border: 1px solid rgba(190,110,75,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 6rem 4rem; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--terracota);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--terracota);
+      margin: 1.5rem 0;
+    }
+
+    /* ─── PROBLEMA ─── */
+    .problema {
+      background: var(--crema-1);
+      color: var(--negro);
+    }
+
+    .problema .section-label { color: var(--terracota); }
+    .problema .section-title { color: var(--negro); }
+
+    .problema-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .quote-card {
+      background:
+        radial-gradient(ellipse 70% 50% at 80% 0%, var(--grad-orange) 0%, transparent 60%),
+        linear-gradient(135deg, var(--grad-red) 0%, var(--grad-purple) 100%);
+      color: var(--crema);
+      padding: 3.5rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-card::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 8rem;
+      color: var(--grad-yellow);
+      opacity: 0.4;
+      position: absolute;
+      top: -1.5rem;
+      left: 1.5rem;
+      line-height: 1;
+    }
+
+    .quote-card blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+      font-style: italic;
+      line-height: 1.45;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quote-source {
+      margin-top: 1.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      position: relative;
+    }
+
+    .problema-text p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--gris);
+      font-weight: 300;
+    }
+
+    .problema-text p strong {
+      color: var(--marron);
+      font-weight: 600;
+    }
+
+    .problema-text p + p { margin-top: 1.2rem; }
+
+    /* ─── PARA QUIÉN ─── */
+    .para-quien {
+      background: var(--negro);
+      position: relative;
+    }
+
+    .para-quien::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 50% at 100% 30%, rgba(211,74,44,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 0% 80%, rgba(77,40,112,0.22) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .para-quien .container { position: relative; z-index: 1; }
+
+    .para-quien-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .busqueda-card {
+      padding: 2rem 1.75rem;
+      border: 1px solid rgba(190,110,75,0.3);
+      background: rgba(253,247,230,0.03);
+      transition: all 0.35s ease;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+
+    .busqueda-card:hover {
+      border-color: var(--grad-yellow);
+      background: rgba(253,247,230,0.06);
+      transform: translateY(-3px);
+    }
+
+    .busqueda-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(232,167,48,0.18);
+      border: 1px solid var(--grad-yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--grad-yellow);
+      font-size: 1.1rem;
+    }
+
+    .busqueda-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--crema-1);
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .busqueda-card p {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--crema-1);
+      opacity: 0.7;
+      font-weight: 300;
+    }
+
+    /* ─── PROPUESTA ─── */
+    .propuesta {
+      background: var(--crema-1);
+      color: var(--negro);
+      position: relative;
+    }
+
+    .propuesta .section-label { color: var(--terracota); }
+    .propuesta .section-title { color: var(--negro); }
+
+    .propuesta-statements {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .statement {
+      padding: 2.25rem 2.5rem;
+      background: var(--negro);
+      color: var(--crema);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .statement::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--terracota);
+    }
+
+    .statement p {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 2.3vw, 1.55rem);
+      line-height: 1.45;
+      font-weight: 400;
+    }
+
+    .statement em {
+      font-style: italic;
+      color: var(--terracota);
+      font-weight: 600;
+    }
+
+    .statement strong {
+      font-weight: 700;
+      color: var(--crema-1);
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── METODOLOGÍA ─── */
+    .metodologia {
+      background:
+        radial-gradient(ellipse 70% 50% at 10% 0%, var(--grad-orange) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 60% at 90% 100%, var(--grad-purple) 0%, transparent 60%),
+        linear-gradient(135deg, var(--grad-red) 0%, var(--grad-purple-dk) 100%);
+      color: var(--crema);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metodologia .section-label { color: var(--grad-yellow); font-weight: 600; }
+
+    .metodologia-pasos {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .paso-card {
+      background: rgba(26,15,30,0.35);
+      border: 1px solid rgba(255,235,180,0.18);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .paso-card:hover {
+      background: rgba(26,15,30,0.5);
+      border-color: var(--grad-yellow);
+      transform: translateY(-4px);
+    }
+
+    .paso-numero {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--grad-yellow);
+      line-height: 1;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .paso-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--crema-1);
+      line-height: 1.3;
+      font-weight: 600;
+    }
+
+    .paso-card h4 strong {
+      color: var(--grad-yellow);
+      font-weight: 700;
+    }
+
+    .metodologia .container { position: relative; z-index: 1; }
+
+    /* ─── SESIÓN INTRO ─── */
+    .sesion-intro {
+      background:
+        radial-gradient(ellipse 70% 55% at 80% 0%, var(--grad-orange) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 60% at 15% 100%, var(--grad-purple) 0%, transparent 55%),
+        linear-gradient(160deg, var(--grad-red) 0%, var(--grad-purple-dk) 70%, var(--negro) 100%);
+      position: relative;
+    }
+
+    .sesion-intro::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 40% at 50% 10%, rgba(232,167,48,0.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .sesion-intro .container { position: relative; z-index: 1; }
+
+    .sesion-intro-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 4rem;
+      align-items: flex-start;
+    }
+
+    .sesion-info .section-title { color: var(--crema-1); }
+
+    .sesion-info p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--crema-1);
+      opacity: 0.78;
+      font-weight: 300;
+    }
+
+    .sesion-info p + p { margin-top: 1.2rem; }
+
+    .sesion-detalles {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2.25rem;
+    }
+
+    .sesion-detalle {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.95rem;
+      color: var(--crema-1);
+    }
+
+    .sesion-detalle-icon {
+      width: 38px;
+      height: 38px;
+      background: rgba(232,167,48,0.18);
+      border: 1px solid rgba(232,167,48,0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+
+    .sesion-detalle strong { font-weight: 600; }
+    .sesion-detalle .label {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.55;
+      display: block;
+      margin-bottom: 0.1rem;
+    }
+
+    /* ─── CALENDARIO ─── */
+    .calendar-wrap {
+      background: rgba(26,15,30,0.55);
+      border: 1px solid rgba(255,235,180,0.22);
+      padding: 1.5rem;
+      position: relative;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .calendar-wrap::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 50px;
+      height: 50px;
+      border-top: 2px solid var(--grad-yellow);
+      border-left: 2px solid var(--grad-yellow);
+    }
+
+    .calendar-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 50px;
+      height: 50px;
+      border-bottom: 2px solid var(--grad-yellow);
+      border-right: 2px solid var(--grad-yellow);
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 0.5rem 1rem;
+      border-bottom: 1px solid rgba(253,247,230,0.1);
+      margin-bottom: 1rem;
+    }
+
+    .calendar-header .calendar-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--crema-1);
+    }
+
+    .calendar-header .calendar-badge {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--terracota);
+      background: rgba(190,110,75,0.12);
+      border: 1px solid rgba(190,110,75,0.4);
+      padding: 0.3rem 0.7rem;
+      border-radius: 100px;
+      font-weight: 600;
+    }
+
+    /* IMPORTANT: replace src below with the Google Calendar Appointment Schedule URL */
+    .calendar-frame {
+      width: 100%;
+      min-height: 620px;
+      border: 0;
+      background: var(--crema-1);
+      display: block;
+    }
+
+    .calendar-fallback {
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(253,247,230,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      text-align: center;
+    }
+
+    .calendar-fallback p {
+      font-size: 0.82rem;
+      color: var(--crema-1);
+      opacity: 0.6;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    .calendar-fallback-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.75rem;
+      background: var(--grad-yellow);
+      color: var(--grad-purple-dk);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      border: 1px solid var(--grad-yellow);
+    }
+
+    .calendar-fallback-btn:hover {
+      background: var(--crema);
+      border-color: var(--crema);
+      transform: translateY(-2px);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--negro);
+      padding: 3rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(155, 98, 73, 0.2);
+    }
+
+    .footer-logo-img { height: 40px; width: auto; object-fit: contain; }
+    footer .footer-copy { font-size: 0.8rem; opacity: 0.4; letter-spacing: 0.05em; }
+    footer .footer-tagline {
+      font-size: 0.8rem;
+      color: var(--terracota);
+      font-style: italic;
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── FADE IN ─── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    /* TABLET y abajo */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      section { padding: 5rem 1.5rem; }
+      .intro-hero { padding: 7rem 1.5rem 4rem; min-height: auto; }
+
+      .intro-hero-inner,
+      .problema-inner,
+      .sesion-intro-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .metodologia-pasos {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .para-quien-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card { padding: 2rem; }
+
+      footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        padding: 2rem 1.25rem;
+      }
+    }
+
+    /* MÓVIL */
+    @media (max-width: 600px) {
+      nav {
+        padding: 1rem 1.25rem;
+      }
+      .nav-logo-img { height: 32px; }
+      .nav-back {
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+      }
+      .nav-back span { display: inline-block; }
+
+      section { padding: 4rem 1.25rem; }
+
+      .intro-hero {
+        padding: 5.5rem 1.25rem 3.5rem;
+        min-height: auto;
+      }
+
+      .hero-label {
+        font-size: 0.66rem;
+        letter-spacing: 0.3em;
+        margin-bottom: 1rem;
+      }
+
+      .intro-hero h1 {
+        font-size: clamp(2rem, 9vw, 2.6rem);
+        line-height: 1.1;
+      }
+
+      .intro-hero .subtitle {
+        font-size: 0.95rem;
+        line-height: 1.65;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-pills {
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+
+      .hero-pill {
+        font-size: 0.72rem;
+        padding: 0.4rem 0.9rem;
+      }
+
+      .hero-cta {
+        margin-top: 2rem;
+        padding: 1rem 1.8rem;
+        font-size: 0.78rem;
+        width: 100%;
+        justify-content: center;
+        letter-spacing: 0.14em;
+      }
+
+      .hero-card {
+        padding: 1.75rem 1.5rem;
+      }
+
+      .hero-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero-card .meta-row {
+        padding: 0.6rem 0;
+        font-size: 0.85rem;
+        gap: 0.6rem;
+      }
+
+      .hero-card .meta-icon {
+        width: 26px;
+        height: 26px;
+        font-size: 0.8rem;
+      }
+
+      .hero-card::before,
+      .hero-card::after {
+        width: 38px;
+        height: 38px;
+      }
+
+      .section-title {
+        font-size: clamp(1.7rem, 7vw, 2.2rem);
+        line-height: 1.2;
+      }
+
+      .quote-card {
+        padding: 2.5rem 1.75rem;
+      }
+      .quote-card::before { font-size: 5.5rem; top: -1rem; }
+      .quote-card blockquote {
+        font-size: 1.15rem;
+        line-height: 1.5;
+      }
+
+      .problema-text p {
+        font-size: 0.97rem;
+        line-height: 1.75;
+      }
+
+      .busqueda-card {
+        padding: 1.5rem 1.25rem;
+        gap: 1rem;
+      }
+      .busqueda-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.95rem;
+      }
+      .busqueda-card h4 { font-size: 1.05rem; }
+      .busqueda-card p { font-size: 0.88rem; }
+
+      .statement {
+        padding: 1.6rem 1.4rem;
+      }
+      .statement p {
+        font-size: 1.05rem;
+        line-height: 1.5;
+      }
+
+      .metodologia-pasos {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 2.5rem;
+      }
+      .paso-card {
+        padding: 1.5rem 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        text-align: left;
+      }
+      .paso-numero {
+        font-size: 2rem;
+        margin-bottom: 0;
+        flex-shrink: 0;
+        line-height: 1;
+      }
+      .paso-card h4 {
+        font-size: 1rem;
+        line-height: 1.35;
+      }
+
+      .sesion-info p { font-size: 0.95rem; }
+
+      .sesion-detalles { gap: 0.75rem; margin-top: 1.75rem; }
+      .sesion-detalle { font-size: 0.88rem; gap: 0.85rem; }
+      .sesion-detalle-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+      }
+      .sesion-detalle .label {
+        font-size: 0.65rem;
+        letter-spacing: 0.12em;
+      }
+
+      .calendar-wrap {
+        padding: 1rem;
+      }
+      .calendar-wrap::before,
+      .calendar-wrap::after {
+        width: 36px;
+        height: 36px;
+      }
+      .calendar-header {
+        padding: 0 0.25rem 0.75rem;
+        margin-bottom: 0.75rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      .calendar-header .calendar-title { font-size: 1rem; }
+      .calendar-frame { min-height: 680px; }
+
+      .calendar-fallback-btn {
+        padding: 0.85rem 1.25rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-align: center;
+      }
+
+      .divider { margin: 1.25rem 0; }
+    }
+
+    /* MÓVIL PEQUEÑO */
+    @media (max-width: 380px) {
+      nav { padding: 0.9rem 1rem; }
+      section { padding: 3.5rem 1rem; }
+      .intro-hero { padding: 5rem 1rem 3rem; }
+
+      .intro-hero h1 { font-size: 1.85rem; }
+      .hero-card { padding: 1.5rem 1.25rem; }
+      .hero-pills { flex-direction: column; align-items: flex-start; }
+      .hero-pill { width: auto; }
+
+      .quote-card { padding: 2rem 1.4rem; }
+      .quote-card blockquote { font-size: 1.05rem; }
+
+      .busqueda-card { padding: 1.25rem 1rem; }
+
+      .paso-card { padding: 1.25rem 1rem; }
+      .paso-numero { font-size: 1.75rem; }
+      .paso-card h4 { font-size: 0.95rem; }
+
+      .calendar-frame { min-height: 720px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="Logo/4x/Mesa%20de%20trabajo%202%20copia%203%404x.png" alt="Ignisencia" class="nav-logo-img" />
+    </a>
+    <a href="index.html" class="nav-back">
+      <span>←</span> Volver al inicio
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="intro-hero">
+    <div class="intro-hero-inner">
+      <div class="fade-in">
+        <p class="hero-label">Sesión de Introducción · 30 min · gratuita</p>
+        <h1>Sesiones de <em>Neuromovimiento</em> para desarrollar liderazgo en entornos inciertos.</h1>
+        <p class="subtitle">
+          Una conversación de 30 minutos por Google Meet para conocernos,
+          entender tu contexto y descubrir si Neuromovimiento es para ti.
+        </p>
+        <div class="hero-pills">
+          <span class="hero-pill accent">✦ 30 minutos</span>
+          <span class="hero-pill">💻 Google Meet</span>
+          <span class="hero-pill">🌿 Sin costo</span>
+        </div>
+        <a href="#agendar" class="hero-cta">Agendar ahora →</a>
+      </div>
+
+      <div class="hero-card fade-in">
+        <h3>¿Qué pasa en estos 30 min?</h3>
+        <div class="meta-row">
+          <span class="meta-icon">①</span>
+          <span>Te escucho: qué te trae aquí</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-icon">②</span>
+          <span>Te explico cómo trabajo</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-icon">③</span>
+          <span>Vemos si tiene sentido continuar</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-icon">✦</span>
+          <span>Sales con claridad. Cero presión.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMA -->
+  <section class="problema">
+    <div class="container">
+      <div class="problema-inner">
+        <div class="fade-in">
+          <p class="section-label">El punto de partida</p>
+          <h2 class="section-title">La rigidez física es la manifestación externa de un sistema nervioso en modo supervivencia.</h2>
+          <div class="divider"></div>
+          <p>
+            Cuando lideras bajo presión sostenida, el cuerpo se contrae para protegerse.
+            Esa contracción <strong>no es solo física</strong>: se traduce en pensamiento
+            rígido, decisiones reactivas y conversaciones que se traban antes de empezar.
+          </p>
+          <p>
+            Trabajar el cuerpo no es opcional, es la vía más directa para recuperar
+            <strong>capacidad de respuesta</strong> frente a lo incierto.
+          </p>
+        </div>
+        <div class="quote-card fade-in">
+          <blockquote>
+            No puedes tener una mente adaptativa<br>en un cuerpo rígido.
+          </blockquote>
+          <p class="quote-source">Lawrence Shapiro · Embodied Cognition, 2019</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARA QUIÉN -->
+  <section class="para-quien" id="para-quien">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">Para ti</p>
+        <h2 class="section-title">Si estás buscando:</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="para-quien-grid fade-in">
+        <div class="busqueda-card">
+          <div class="busqueda-icon">✦</div>
+          <div>
+            <h4>Tomar decisiones</h4>
+            <p>en contextos inciertos, sin paralizarte ni acelerarte.</p>
+          </div>
+        </div>
+        <div class="busqueda-card">
+          <div class="busqueda-icon">✦</div>
+          <div>
+            <h4>Articular puntos de vista</h4>
+            <p>en ambientes adversos, manteniendo tu voz y tu postura.</p>
+          </div>
+        </div>
+        <div class="busqueda-card">
+          <div class="busqueda-icon">✦</div>
+          <div>
+            <h4>Sostener conversaciones difíciles</h4>
+            <p>sin desregularte ni perder el centro.</p>
+          </div>
+        </div>
+        <div class="busqueda-card">
+          <div class="busqueda-icon">✦</div>
+          <div>
+            <h4>Negociar en tu carrera</h4>
+            <p>con claridad sobre lo que vale tu trabajo y tu tiempo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROPUESTA -->
+  <section class="propuesta">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">Hoy hablamos de</p>
+        <h2 class="section-title">Liderazgo <em style="font-style: italic; color: var(--terracota);">adaptativo</em>.</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="propuesta-statements fade-in">
+        <div class="statement">
+          <p>Hoy hablamos de un liderazgo <em>HUMANO</em> en un entorno <em>DIGITAL</em> de cambios acelerados.</p>
+        </div>
+        <div class="statement">
+          <p>Hoy hablamos de que los mejores líderes son los que gestionan la presión <strong>SIN COLAPSAR</strong>.</p>
+        </div>
+        <div class="statement">
+          <p>Hoy hablamos de <strong>LIDERAZGO ADAPTATIVO</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METODOLOGÍA -->
+  <section class="metodologia">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">Cómo trabajamos</p>
+        <h2 class="section-title">A través de esta metodología:</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="metodologia-pasos fade-in">
+        <div class="paso-card">
+          <div class="paso-numero">01</div>
+          <h4>Identificamos el <strong>objetivo</strong></h4>
+        </div>
+        <div class="paso-card">
+          <div class="paso-numero">02</div>
+          <h4>Entendemos el <strong>contexto</strong></h4>
+        </div>
+        <div class="paso-card">
+          <div class="paso-numero">03</div>
+          <h4>Explicamos la <strong>teoría aplicada</strong></h4>
+        </div>
+        <div class="paso-card">
+          <div class="paso-numero">04</div>
+          <h4>Practicamos <strong>Neuromovimiento</strong></h4>
+        </div>
+        <div class="paso-card">
+          <div class="paso-numero">05</div>
+          <h4>Armamos un <strong>plan de acción</strong></h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SESIÓN DE INTRODUCCIÓN + CALENDARIO -->
+  <section class="sesion-intro" id="agendar">
+    <div class="container">
+      <div class="sesion-intro-inner">
+        <div class="sesion-info fade-in">
+          <p class="section-label">El primer paso</p>
+          <h2 class="section-title">Agenda tu <em style="font-family: 'Playfair Display'; font-style: italic; color: var(--terracota);">Sesión de Introducción</em></h2>
+          <div class="divider"></div>
+          <p>
+            Una conversación virtual de <strong>30 minutos</strong> conmigo, Rosario.
+            Sin presentación corporativa, sin venta. Solo una conversación honesta
+            para entender qué te trae aquí y si tiene sentido que trabajemos juntas.
+          </p>
+          <p>
+            Elige el día y hora que mejor te queda. Te llega la confirmación por
+            email con el link de Google Meet automáticamente.
+          </p>
+
+          <div class="sesion-detalles">
+            <div class="sesion-detalle">
+              <div class="sesion-detalle-icon">⏱</div>
+              <div>
+                <span class="label">Duración</span>
+                <strong>30 minutos</strong>
+              </div>
+            </div>
+            <div class="sesion-detalle">
+              <div class="sesion-detalle-icon">💻</div>
+              <div>
+                <span class="label">Modalidad</span>
+                <strong>Virtual · Google Meet</strong>
+              </div>
+            </div>
+            <div class="sesion-detalle">
+              <div class="sesion-detalle-icon">🌿</div>
+              <div>
+                <span class="label">Inversión</span>
+                <strong>Sin costo · primera conversación</strong>
+              </div>
+            </div>
+            <div class="sesion-detalle">
+              <div class="sesion-detalle-icon">✦</div>
+              <div>
+                <span class="label">Para</span>
+                <strong>Líderes, ejecutivos, profesionales en transición</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-in">
+          <div class="calendar-wrap">
+            <div class="calendar-header">
+              <span class="calendar-title">Elige día y hora</span>
+              <span class="calendar-badge">Google Calendar</span>
+            </div>
+
+            <!--
+              Calendario de Google conectado a rosarioreynoso@codestudiocompany.com
+              Short URL: https://calendar.google.com/calendar/appointments/schedules/AcZssZ0Q9P_jESQ5oKTDYIHLwekL8B8NXNu8fQ86VqSysyEOjavUnL-Vkb-GlRiQ9rUrTKzkvI4FpDH4?gv=true
+              Si el iframe no renderiza, usar la "Vista previa" del Horario de citas
+              en Google Calendar para obtener la URL larga con ?gv=true y reemplazar abajo.
+            -->
+
+            <iframe
+              src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0Q9P_jESQ5oKTDYIHLwekL8B8NXNu8fQ86VqSysyEOjavUnL-Vkb-GlRiQ9rUrTKzkvI4FpDH4?gv=true"
+              class="calendar-frame"
+              title="Agendar Sesión de Introducción con Rosario Reynoso"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+
+            <div class="calendar-fallback">
+              <p>¿No se carga el calendario aquí?</p>
+              <a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0Q9P_jESQ5oKTDYIHLwekL8B8NXNu8fQ86VqSysyEOjavUnL-Vkb-GlRiQ9rUrTKzkvI4FpDH4?gv=true" target="_blank" rel="noopener" class="calendar-fallback-btn">
+                Abrir página de reserva en una pestaña nueva →
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="Logo/4x/Mesa%20de%20trabajo%204%20copia%204%404x.png" alt="Ignisencia" class="footer-logo-img" />
+    <span class="footer-tagline">Estado de transformación</span>
+    <span class="footer-copy">© 2026 Igniscencia</span>
+  </footer>
+
+  <script>
+    // Scroll fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
