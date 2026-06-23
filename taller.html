@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Taller de Neuromovimiento — Ignisencia</title>
+  <title>Neurociencia y Danza — Ignisencia</title>
   <link rel="icon" type="image/png" href="Logo/Foto%20de%20Perfil.png" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
@@ -13,11 +13,12 @@
     :root {
       --crema-1:        #fff7e6;
       --crema-2:        #ebd7cd;
-      --terracota:      #be6e4b;
-      --terracota-dark: #9b6149;
-      --marron:         #6a3118;
-      --negro:          #1a0f08;
-      --gris:           #5a4035;
+      --terracota:      #c06235;   /* rust · color medio de la paleta */
+      --terracota-dark: #9e4f2a;
+      --marron:         #5c2d80;   /* púrpura · color izquierdo */
+      --oro:            #d4a535;   /* dorado · color derecho */
+      --negro:          #0f0720;   /* fondo oscuro con tinte púrpura */
+      --gris:           #5a4060;
       --crema:          var(--crema-1);
       --whatsapp:       #25D366;
       --whatsapp-dark:  #128C7E;
@@ -75,14 +76,165 @@
 
     /* ─── HERO TALLER ─── */
     .taller-hero {
-      min-height: 50vh;
+      min-height: 55vh;
       display: flex;
       align-items: flex-end;
       padding: 8rem 4rem 5rem;
       background:
-        linear-gradient(to bottom, rgba(26,15,8,0.7) 0%, rgba(26,15,8,0.5) 50%, rgba(26,15,8,0.9) 100%),
+        linear-gradient(to bottom, rgba(26,15,8,0.6) 0%, rgba(26,15,8,0.4) 50%, rgba(26,15,8,0.92) 100%),
         url('Pagina%20web/hero%20image%20web.png') center/cover no-repeat;
       position: relative;
+    }
+
+    /* ─── SERIE TALLERES ─── */
+    .serie-section {
+      background: var(--negro);
+      padding: 5rem 4rem;
+    }
+
+    .serie-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .serie-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--oro);
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .serie-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 400;
+      color: var(--crema-1);
+      margin-bottom: 3rem;
+      font-style: italic;
+    }
+
+    .serie-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .serie-card {
+      border: 1px solid rgba(255,247,230,0.1);
+      padding: 2rem;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+
+    .serie-card:hover { border-color: rgba(92,45,128,0.4); }
+
+    .serie-card.destacada {
+      border-color: var(--marron);
+      background: rgba(92,45,128,0.08);
+    }
+
+    .serie-num {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--oro);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .serie-card.destacada .serie-num::after {
+      content: 'PRÓXIMO';
+      background: var(--oro);
+      color: var(--negro);
+      padding: 0.15rem 0.6rem;
+      border-radius: 100px;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+    }
+
+    .serie-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--crema-1);
+      margin-bottom: 0.75rem;
+      font-weight: 400;
+    }
+
+    .serie-fecha {
+      font-size: 0.82rem;
+      color: rgba(255,247,230,0.5);
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* ─── PRECIOS ─── */
+    .precios-section {
+      background: rgba(255,247,230,0.03);
+      border-top: 1px solid rgba(255,247,230,0.06);
+      border-bottom: 1px solid rgba(255,247,230,0.06);
+      padding: 3.5rem 4rem;
+    }
+
+    .precios-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .precio-card {
+      flex: 1;
+      border: 1px solid rgba(255,247,230,0.1);
+      padding: 2rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .precio-card.destacado {
+      border-color: var(--marron);
+      background: rgba(92,45,128,0.1);
+    }
+
+    .precio-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--oro);
+    }
+
+    .precio-valor {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--crema-1);
+      line-height: 1;
+    }
+
+    .precio-valor span {
+      font-size: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      opacity: 0.5;
+      font-weight: 300;
+    }
+
+    .precio-desc {
+      font-size: 0.88rem;
+      color: rgba(255,247,230,0.55);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .precio-ahorro {
+      font-size: 0.8rem;
+      color: var(--oro);
+      font-weight: 500;
     }
 
     .taller-hero-inner {
@@ -95,7 +247,7 @@
       font-size: 0.72rem;
       letter-spacing: 0.4em;
       text-transform: uppercase;
-      color: var(--terracota);
+      color: var(--oro);
       margin-bottom: 1rem;
       font-weight: 400;
     }
@@ -113,7 +265,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: var(--terracota);
+      background: var(--marron);
       color: var(--crema-1);
       padding: 0.45rem 1.1rem;
       border-radius: 100px;
@@ -183,7 +335,7 @@
     .divider {
       width: 60px;
       height: 2px;
-      background: var(--terracota);
+      background: linear-gradient(to right, var(--marron), var(--terracota), var(--oro));
       margin: 0.5rem 0 1rem;
     }
 
@@ -204,8 +356,8 @@
     .taller-detalle-icon {
       width: 40px;
       height: 40px;
-      background: rgba(190,110,75,0.1);
-      border: 1px solid rgba(190,110,75,0.25);
+      background: rgba(92,45,128,0.12);
+      border: 1px solid rgba(92,45,128,0.3);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -267,7 +419,7 @@
     }
 
     .form-group input::placeholder { color: rgba(255,247,230,0.25); }
-    .form-group input:focus { border-color: var(--terracota); }
+    .form-group input:focus { border-color: var(--marron); }
 
     .form-check {
       display: flex;
@@ -292,8 +444,8 @@
     }
 
     .form-check input[type="checkbox"]:checked {
-      background: var(--terracota);
-      border-color: var(--terracota);
+      background: var(--marron);
+      border-color: var(--marron);
     }
 
     .form-check input[type="checkbox"]:checked::after {
@@ -315,7 +467,7 @@
 
     .form-submit {
       width: 100%;
-      background: var(--terracota);
+      background: linear-gradient(135deg, var(--marron), var(--terracota));
       color: var(--crema-1);
       border: none;
       padding: 1rem;
@@ -325,11 +477,11 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
+      transition: opacity 0.3s, transform 0.2s;
     }
 
     .form-submit:hover {
-      background: var(--terracota-dark);
+      opacity: 0.9;
       transform: translateY(-2px);
     }
 
@@ -420,6 +572,20 @@
 
       .taller-form-wrap { position: static; }
 
+      .serie-section { padding: 4rem 1.5rem; }
+
+      .serie-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .precios-section { padding: 3rem 1.5rem; }
+
+      .precios-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
       footer {
         flex-direction: column;
         gap: 0.75rem;
@@ -443,6 +609,10 @@
       .taller-form-wrap { padding: 2rem 1.25rem; }
 
       .taller-desc { font-size: 0.97rem; }
+
+      .serie-section { padding: 3rem 1.25rem; }
+
+      .precios-section { padding: 2.5rem 1.25rem; }
     }
   </style>
 </head>
@@ -459,13 +629,13 @@
   <!-- HERO -->
   <div class="taller-hero">
     <div class="taller-hero-inner">
-      <p class="section-label">Experiencia grupal</p>
-      <h1>Taller de<br>Neuromovimiento</h1>
-      <span class="taller-hero-badge">✦ Próximamente</span>
+      <p class="section-label">Serie de clases presenciales</p>
+      <h1>Neurociencia<br>y Danza</h1>
+      <span class="taller-hero-badge">✦ Serie de 3 clases · Jul–Ago 2026</span>
       <div class="taller-hero-meta">
-        <span class="hero-meta-pill">✦ Grupal</span>
-        <span class="hero-meta-pill">🌿 Presencial · Lima</span>
-        <span class="hero-meta-pill">📅 Fecha por confirmar</span>
+        <span class="hero-meta-pill">⏱ 2 horas · Teoría y práctica</span>
+        <span class="hero-meta-pill">🌿 Casa Kusikuy · Miraflores</span>
+        <span class="hero-meta-pill">👥 Cupos limitados</span>
       </div>
     </div>
   </div>
@@ -478,35 +648,35 @@
       <div class="taller-info">
         <div class="divider"></div>
         <p class="taller-desc">
-          Un espacio grupal para entrar en estado de <strong>ignición</strong>. Combinamos neurociencia y movimiento corporal para que <em>tu cuerpo enseñe a tu mente</em> un nuevo lenguaje — uno que se siente, no se estudia. Sales con un sistema nervioso más regulado, claridad mental y una conexión real con tu propósito.
+          Combinaremos <strong>neurociencia y danza</strong> para descubrir cuándo estamos viviendo desde la historia que cuenta nuestra mente y cuándo estamos realmente presentes.
+        </p>
+        <p class="taller-desc" style="font-size: 0.95rem;">
+          Cada clase es <em>teoría que se mueve</em>: entiendes el concepto con la mente y lo registras con el cuerpo. No se necesita experiencia en danza ni en neurociencia — solo disposición a sentir.
         </p>
         <div class="taller-detalles">
           <div class="taller-detalle">
-            <div class="taller-detalle-icon">📅</div>
-            <div><strong>Próximamente</strong> · fecha por confirmar</div>
+            <div class="taller-detalle-icon">⏱</div>
+            <div><strong>2 horas</strong> · teoría y práctica integradas</div>
           </div>
           <div class="taller-detalle">
             <div class="taller-detalle-icon">🌿</div>
-            <div><strong>Presencial</strong> · Lima, Perú</div>
+            <div><strong>Casa Kusikuy</strong> · Miraflores, Lima</div>
           </div>
           <div class="taller-detalle">
             <div class="taller-detalle-icon">👥</div>
-            <div><strong>Grupo reducido</strong> · cupos limitados para acompañar de cerca</div>
+            <div><strong>Grupo reducido</strong> · cupos limitados</div>
           </div>
           <div class="taller-detalle">
             <div class="taller-detalle-icon">✦</div>
-            <div><strong>Sin requisitos previos</strong> · solo abrirte a sentir distinto</div>
+            <div><strong>Sin requisitos previos</strong> · solo ganas de estar presente</div>
           </div>
         </div>
-        <p class="taller-desc" style="margin-top: 1rem; font-size: 0.95rem;">
-          Déjanos tus datos y te avisamos en cuanto abramos las inscripciones. Tendrás prioridad en los cupos.
-        </p>
       </div>
 
       <!-- Formulario -->
       <div class="taller-form-wrap">
         <h3>Reserva tu lugar</h3>
-        <p class="form-sub">Te avisamos por WhatsApp en cuanto abramos inscripciones.</p>
+        <p class="form-sub">Te escribimos por WhatsApp para confirmar tu cupo.</p>
 
         <form id="tallerForm" onsubmit="submitTaller(event)">
           <div class="name-row">
@@ -523,19 +693,83 @@
             <label for="taller-celular">Teléfono / WhatsApp</label>
             <input type="tel" id="taller-celular" name="celular" placeholder="+51 999 999 999" required />
           </div>
+          <div class="form-group">
+            <label for="taller-opcion">¿Qué te interesa?</label>
+            <select id="taller-opcion" name="opcion" style="background:rgba(255,247,230,0.06);border:1px solid rgba(255,247,230,0.13);color:var(--crema-1);padding:0.85rem 1rem;font-family:'Montserrat',sans-serif;font-size:0.95rem;font-weight:300;outline:none;width:100%;appearance:none;">
+              <option value="clase1" style="background:#1a0f08">Clase 1 · Red Neuronal por Defecto (10 Jul)</option>
+              <option value="paquete" style="background:#1a0f08">Paquete x3 · Las 3 clases (Jul–Ago)</option>
+            </select>
+          </div>
 
           <label class="form-check">
             <input type="checkbox" id="taller-info" name="info" />
-            <span class="form-check-label">Sí, quiero recibir información sobre talleres, sesiones y novedades de Igniscencia.</span>
+            <span class="form-check-label">Sí, quiero recibir información sobre futuras clases y novedades de Ignisencia.</span>
           </label>
 
-          <button type="submit" class="form-submit">Apartar mi cupo ✦</button>
+          <button type="submit" class="form-submit">Reservar mi lugar ✦</button>
         </form>
 
         <div class="form-success" id="formSuccess">
           <div class="success-icon">🔥</div>
-          <h4>¡Estás dentro!</h4>
-          <p>Acabamos de abrir WhatsApp con tu información pre-completada — solo dale enviar para que Chari reciba tu solicitud y te avise cuando confirmemos la fecha del taller ✨</p>
+          <h4>¡Te esperamos!</h4>
+          <p>Abrimos WhatsApp con tu información — solo dale enviar para confirmar tu cupo con Chari. ✨</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SERIE DE CLASES -->
+  <div class="serie-section">
+    <div class="serie-container">
+      <p class="serie-label">Programa</p>
+      <p class="serie-titulo">Tres clases. Tres conceptos que cambian cómo te relacionas contigo.</p>
+      <div class="serie-grid">
+
+        <div class="serie-card destacada">
+          <div class="serie-num">Clase 1</div>
+          <h3>La Red Neuronal por Defecto</h3>
+          <p class="serie-fecha">📅 Viernes 10 de Julio · 7:30 PM</p>
+        </div>
+
+        <div class="serie-card">
+          <div class="serie-num">Clase 2</div>
+          <h3>El Secuestro Amigdalino</h3>
+          <p class="serie-fecha">📅 Jueves 6 de Agosto</p>
+        </div>
+
+        <div class="serie-card">
+          <div class="serie-num">Clase 3</div>
+          <h3>Sincronía Cerebro-Corazón</h3>
+          <p class="serie-fecha">📅 Jueves 20 de Agosto</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- PRECIOS -->
+  <div class="precios-section">
+    <div class="precios-container">
+
+      <div class="precio-card">
+        <div class="precio-tag">Clase individual</div>
+        <div class="precio-valor">S/100 <span>/ clase</span></div>
+        <div class="precio-desc">Elige una o más clases por separado según tu disponibilidad.</div>
+      </div>
+
+      <div class="precio-card destacado">
+        <div class="precio-tag">Paquete x3 · Recomendado</div>
+        <div class="precio-valor">S/250 <span>/ las 3 clases</span></div>
+        <div class="precio-desc">Las tres clases de la serie. La experiencia completa de Neurociencia y Danza.</div>
+        <div class="precio-ahorro">↳ Ahorras S/50 vs. clases sueltas</div>
+      </div>
+
+      <div class="precio-card" style="border-color:rgba(255,247,230,0.07); display:flex; flex-direction:column; justify-content:center; gap:1rem;">
+        <div class="precio-tag">Pago</div>
+        <div class="precio-desc" style="font-size:0.95rem;">
+          <strong style="color:var(--crema-1)">YAPE</strong> al 993 500 262<br>
+          o reserva por WhatsApp y coordinamos.
         </div>
       </div>
 
@@ -552,22 +786,29 @@
   <script>
     const WHATSAPP_NUMBER = '51993500262';
 
+    const opcionLabels = {
+      'clase1':  'Clase 1 · La Red Neuronal por Defecto (Vie 10 Jul · 7:30 PM)',
+      'paquete': 'Paquete x3 · Las 3 clases de Neurociencia y Danza (Jul–Ago)'
+    };
+
     function submitTaller(e) {
       e.preventDefault();
-      const form = document.getElementById('tallerForm');
+      const form    = document.getElementById('tallerForm');
       const success = document.getElementById('formSuccess');
 
-      const nombre   = document.getElementById('taller-nombre').value.trim();
-      const apellido = document.getElementById('taller-apellido').value.trim();
-      const celular  = document.getElementById('taller-celular').value.trim();
-      const info     = document.getElementById('taller-info').checked;
+      const nombre  = document.getElementById('taller-nombre').value.trim();
+      const apellido= document.getElementById('taller-apellido').value.trim();
+      const celular = document.getElementById('taller-celular').value.trim();
+      const opcion  = document.getElementById('taller-opcion').value;
+      const info    = document.getElementById('taller-info').checked;
 
       const mensaje =
-        `Hola Chari ✦ Quiero apartar mi cupo para el Taller de Neuromovimiento.\n\n` +
+        `Hola Chari ✦ Quiero reservar mi lugar en Neurociencia y Danza.\n\n` +
         `• Nombre: ${nombre} ${apellido}\n` +
         `• Teléfono: ${celular}\n` +
-        `• Recibir info de talleres: ${info ? 'Sí' : 'No'}\n\n` +
-        `Avísame cuando confirmes la fecha. Gracias 🙏`;
+        `• Opción: ${opcionLabels[opcion]}\n` +
+        `• Recibir info de futuras clases: ${info ? 'Sí' : 'No'}\n\n` +
+        `¡Gracias! 🙏`;
 
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`;
       window.open(url, '_blank');
